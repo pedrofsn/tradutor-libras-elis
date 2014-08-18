@@ -21,10 +21,8 @@ public class FragmentVisografema extends Fragment {
 	private List<Visografema> gridArray;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.adapter_conjunto_teclas,
-				container, false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.adapter_conjunto_teclas, container, false);
 
 		gridArray = new ArrayList<Visografema>();
 
@@ -34,8 +32,7 @@ public class FragmentVisografema extends Fragment {
 
 		gridView = (GridView) rootView.findViewById(R.id.gridViewTeclas);
 
-		customGridAdapter = new AdapterTecla(getActivity(),
-				R.layout.adapter_tecla, gridArray);
+		customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray);
 
 		gridView.setAdapter(customGridAdapter);
 

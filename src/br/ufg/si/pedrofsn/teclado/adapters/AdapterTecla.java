@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import br.ufg.si.pedrofsn.R;
+import br.ufg.si.pedrofsn.Utils;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class AdapterTecla extends ArrayAdapter<Visografema> {
@@ -31,9 +32,6 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 		View viewTecla = convertView;
 		ViewHolder holder = null;
 
-		Typeface fonteElis = Typeface.createFromAsset(context.getAssets(),
-				"elis.ttf");
-
 		if (viewTecla == null) {
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 			viewTecla = inflater.inflate(layoutResourceId, parent, false);
@@ -51,7 +49,8 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 		Visografema item = data.get(position);
 		holder.buttonTecla.setText(item.getValorElis());
 		holder.buttonTecla.setContentDescription(item.getValorElis());
-		holder.buttonTecla.setTypeface(fonteElis);
+		
+		Utils.aplicarFonteElis(getContext(), holder.buttonTecla);
 
 		return viewTecla;
 

@@ -2,8 +2,9 @@
 <resources>
 
     <string name="app_name">tradutor-libras-elis</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="elis">ELIS</string>
+    <string name="portugues">PT-BR</string>
+    <string name="teste">Teste</string>
 
     <!-- GRUPOS DE VISOGRAFEMAS -->
     <string name="CONFIGURACOES_DE_DEDO_POLEGAR">POLEGAR</string>
