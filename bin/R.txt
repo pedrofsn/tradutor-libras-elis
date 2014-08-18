@@ -256,6 +256,7 @@ int id default_activity_button 0x7f050028
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
+int id editText 0x7f050042
 int id edit_query 0x7f050030
 int id end 0x7f050013
 int id expand_activities_button 0x7f050026
@@ -299,7 +300,6 @@ int id submit_area 0x7f050039
 int id tabMode 0x7f050002
 int id textViewDe 0x7f05003e
 int id textViewPara 0x7f050040
-int id textViewTeste 0x7f050042
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021

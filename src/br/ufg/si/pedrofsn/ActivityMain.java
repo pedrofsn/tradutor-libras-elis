@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 	private LinearLayout linearLayoutTrocaLinguagem;
 	private TextView textViewPara;
 	private ImageView imageViewTraduzir;
-	private TextView textViewTeste;
+	private EditText editText;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 		linearLayoutTrocaLinguagem = (LinearLayout) findViewById(R.id.linearLayoutTrocaLinguagem);
 		textViewPara = (TextView) findViewById(R.id.textViewPara);
 		imageViewTraduzir = (ImageView) findViewById(R.id.imageViewTraduzir);
-		textViewTeste = (TextView) findViewById(R.id.textViewTeste);
+		editText = (EditText) findViewById(R.id.editText);
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
 
 		adapterViewPager = new AdapterViewPager(this, getSupportFragmentManager());
@@ -75,8 +76,8 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 			e.printStackTrace();
 		}
 
-		Utils.aplicarFonteElis(this, textViewTeste);
-		textViewTeste.setText(retornoDoServidor);
+		Utils.aplicarFonteElis(this, editText);
+		editText.setText(retornoDoServidor);
 	}
 
 	@Override
