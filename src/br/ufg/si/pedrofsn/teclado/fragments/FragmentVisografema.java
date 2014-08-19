@@ -32,7 +32,8 @@ public class FragmentVisografema extends Fragment {
 
 		gridView = (GridView) rootView.findViewById(R.id.gridViewTeclas);
 
-		customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray);
+		// desenvolver e montar o listener dos botões aqui
+		customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray, null);
 
 		gridView.setAdapter(customGridAdapter);
 
