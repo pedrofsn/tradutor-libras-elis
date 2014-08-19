@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -39,11 +40,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 	private ViewPager viewPager;
 
+	private int LINGUAGEM_ATUAL = 0;
+
 	private TextView textViewDe;
 	private LinearLayout linearLayoutTrocaLinguagem;
 	private TextView textViewPara;
 	private ImageView imageViewTraduzir;
-	private EditText editText;
+	private EditText editTextPtBr;
+	private TextView textViewElis;
+
+	private ELiS termo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,8 +60,20 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 		linearLayoutTrocaLinguagem = (LinearLayout) findViewById(R.id.linearLayoutTrocaLinguagem);
 		textViewPara = (TextView) findViewById(R.id.textViewPara);
 		imageViewTraduzir = (ImageView) findViewById(R.id.imageViewTraduzir);
-		editText = (EditText) findViewById(R.id.editText);
+		editTextPtBr = (EditText) findViewById(R.id.editTextPtBr);
+		textViewElis = (TextView) findViewById(R.id.textViewElis);
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+		// INICIA A TELA COM O KEBYOARD-ELIS FECHADO
+		viewPager.setVisibility(View.GONE);
+
+		CalculoTamanhoTela calculoTamanhoTela = new CalculoTamanhoTela(this);
+		int maxHeight = (int) (calculoTamanhoTela.getHeightScreen() * 0.5);
+		editTextPtBr.setMaxHeight(maxHeight);
+		Log.e("teste", "calculoTamanhoTela.getHeightScreen() = " + calculoTamanhoTela.getHeightScreen());
+		Log.e("teste", "maxHeight = " + maxHeight);
+
+		termo = new ELiS();
 
 		adapterViewPager = new AdapterViewPager(this, getSupportFragmentManager());
 
@@ -76,15 +94,20 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 			e.printStackTrace();
 		}
 
-		Utils.aplicarFonteElis(this, editText);
-		editText.setText(retornoDoServidor);
+		Utils.aplicarFonteElis(this, editTextPtBr);
+		editTextPtBr.setText(retornoDoServidor);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.imageViewTraduzir:
-			AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, new ELiS("elis", "pt-br", "casa"));
+
+			termo.setDe(getLinguagem(1));
+			termo.setDe(getLinguagem(0));
+			termo.setTermo(getTermoInseridoPeloUsuario());
+
+			AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, termo);
 			httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
 			break;
 
@@ -98,11 +121,27 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 		if (textViewDe.getText().toString().equalsIgnoreCase(getString(R.string.portugues))) {
 			textViewDe.setText(getString(R.string.elis));
 			textViewPara.setText(getString(R.string.portugues));
+			textViewElis.setVisibility(View.VISIBLE);
+			editTextPtBr.setVisibility(View.GONE);
+			viewPager.setVisibility(View.VISIBLE);
+			LINGUAGEM_ATUAL = 1;
 		} else {
 			textViewDe.setText(getString(R.string.portugues));
 			textViewPara.setText(getString(R.string.elis));
+			textViewElis.setVisibility(View.GONE);
+			editTextPtBr.setVisibility(View.VISIBLE);
+			viewPager.setVisibility(View.GONE);
+			LINGUAGEM_ATUAL = 0;
 		}
 
+	}
+
+	private String getLinguagem(int origemOuDestino) {
+		return LINGUAGEM_ATUAL == origemOuDestino ? "elis" : "pt-br";
+	}
+
+	private String getTermoInseridoPeloUsuario() {
+		return LINGUAGEM_ATUAL == 1 ? textViewElis.getText().toString() : editTextPtBr.getText().toString();
 	}
 
 }
