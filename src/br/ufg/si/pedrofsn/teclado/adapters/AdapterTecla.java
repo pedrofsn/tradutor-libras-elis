@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils;
+import br.ufg.si.pedrofsn.teclado.interfaces.IOnClick;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class AdapterTecla extends ArrayAdapter<Visografema> {
@@ -20,14 +21,14 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 	private Context context;
 	private int layoutResourceId;
 	private List<Visografema> data;
-	private OnClickListener onClickListener;
+	private IOnClick callback;
 
-	public AdapterTecla(Context context, int layoutResourceId, List<Visografema> gridArray, OnClickListener onClickListener) {
+	public AdapterTecla(Context context, int layoutResourceId, List<Visografema> gridArray) {
 		super(context, layoutResourceId, gridArray);
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.data = gridArray;
-		this.onClickListener = onClickListener;
+		this.callback = (IOnClick) context;
 	}
 
 	@Override
@@ -48,10 +49,15 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 			holder = (ViewHolder) viewTecla.getTag();
 		}
 
-		Visografema item = data.get(position);
-		holder.buttonTecla.setText(Html.fromHtml(item.getValorElis()));
-		holder.buttonTecla.setContentDescription(item.getValorElis());
-		holder.buttonTecla.setOnClickListener(onClickListener);
+		final Visografema visografemaAtual = data.get(position);
+		holder.buttonTecla.setText(Html.fromHtml(visografemaAtual.getValorElis()));
+		holder.buttonTecla.setContentDescription(visografemaAtual.getValorElis());
+		holder.buttonTecla.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				callback.getVisografemaClicado(visografemaAtual);
+			}
+		});
 
 		Utils.aplicarFonteElis(getContext(), holder.buttonTecla);
 
@@ -63,4 +69,5 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 		Button buttonTecla;
 
 	}
+
 }

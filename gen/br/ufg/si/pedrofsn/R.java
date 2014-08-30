@@ -1206,21 +1206,8 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class string {
-        public static final int CONFIGURACOES_DE_DEDO_DEMAIS_DEDOS=0x7f0a0012;
-        /**  GRUPOS DE VISOGRAFEMAS 
-         */
-        public static final int CONFIGURACOES_DE_DEDO_POLEGAR=0x7f0a0011;
-        public static final int DIACRITICOS=0x7f0a001b;
-        public static final int MOVIMENTOS_EXTERNOS=0x7f0a0018;
-        public static final int MOVIMENTOS_EXTERNOS_MOVIMENTOS_INTERNOS=0x7f0a0019;
-        public static final int MOVIMENTOS_EXTERNOS_MOVIMENTOS_SEM_AS_MAOS=0x7f0a001a;
-        public static final int NUMEROS=0x7f0a001d;
-        public static final int ORIENTACAO_DA_PALMA=0x7f0a0013;
-        public static final int PONTOS_DE_ARTICULACAO_CABECA=0x7f0a0014;
-        public static final int PONTOS_DE_ARTICULACAO_MAO=0x7f0a0017;
-        public static final int PONTOS_DE_ARTICULACAO_MEMBROS=0x7f0a0016;
-        public static final int PONTOS_DE_ARTICULACAO_TRONCO=0x7f0a0015;
-        public static final int PONTUACAO=0x7f0a001c;
+        public static final int NUMEROS=0x7f0a0016;
+        public static final int PONTUACAO=0x7f0a0015;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1262,7 +1249,13 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int app_name=0x7f0a000d;
+        /**  GRUPOS DE VISOGRAFEMAS 
+         */
+        public static final int configuracao_de_dedo=0x7f0a0011;
         public static final int elis=0x7f0a000e;
+        public static final int movimentos=0x7f0a0014;
+        public static final int orientacao_de_palma=0x7f0a0012;
+        public static final int pontos_de_articulacao=0x7f0a0013;
         public static final int portugues=0x7f0a000f;
         public static final int teste=0x7f0a0010;
     }

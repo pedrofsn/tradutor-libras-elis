@@ -33,7 +33,7 @@ public class FragmentVisografema extends Fragment {
 		gridView = (GridView) rootView.findViewById(R.id.gridViewTeclas);
 
 		// desenvolver e montar o listener dos botões aqui
-		customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray, null);
+		customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray);
 
 		gridView.setAdapter(customGridAdapter);
 
@@ -49,16 +49,13 @@ public class FragmentVisografema extends Fragment {
 
 		switch (numeroGrupoDeVisografemas) {
 
-		case Constantes.CONFIGURACOES_DE_DEDO_POLEGAR:
+		case Constantes.CONFIGURACAO_DE_DEDO:
 			gridArray.add(new Visografema("q"));
 			gridArray.add(new Visografema("w"));
 			gridArray.add(new Visografema("e"));
 			gridArray.add(new Visografema("r"));
 			gridArray.add(new Visografema("t"));
 			gridArray.add(new Visografema("y"));
-			break;
-
-		case Constantes.CONFIGURACOES_DE_DEDO_DEMAIS_DEDOS:
 			gridArray.add(new Visografema("u"));
 			gridArray.add(new Visografema("i"));
 			gridArray.add(new Visografema("o"));
@@ -81,7 +78,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("k"));
 			break;
 
-		case Constantes.ORIENTACAO_DA_PALMA:
+		case Constantes.ORIENTACAO_DE_PALMA:
 			gridArray.add(new Visografema("l"));
 			gridArray.add(new Visografema("ç"));
 			gridArray.add(new Visografema("z"));
@@ -89,8 +86,8 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("c"));
 			gridArray.add(new Visografema("v"));
 			break;
-
-		case Constantes.PONTOS_DE_ARTICULACAO_CABECA:
+			
+		case Constantes.PONTOS_DE_ARTICULACAO:
 			gridArray.add(new Visografema("Q"));
 			gridArray.add(new Visografema("W"));
 			gridArray.add(new Visografema("E"));
@@ -106,17 +103,11 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("D"));
 			gridArray.add(new Visografema("F"));
 			gridArray.add(new Visografema("G"));
-			break;
-
-		case Constantes.PONTOS_DE_ARTICULACAO_TRONCO:
 			gridArray.add(new Visografema("H"));
 			gridArray.add(new Visografema("J"));
 			gridArray.add(new Visografema("K"));
 			gridArray.add(new Visografema("L"));
 			gridArray.add(new Visografema("Ç"));
-			break;
-
-		case Constantes.PONTOS_DE_ARTICULACAO_MEMBROS:
 			gridArray.add(new Visografema("\\"));
 			gridArray.add(new Visografema("Z"));
 			gridArray.add(new Visografema("X"));
@@ -125,9 +116,6 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("B"));
 			gridArray.add(new Visografema("N"));
 			gridArray.add(new Visografema("M"));
-			break;
-
-		case Constantes.PONTOS_DE_ARTICULACAO_MAO:
 			gridArray.add(new Visografema("@"));
 			gridArray.add(new Visografema("#"));
 			gridArray.add(new Visografema("$"));
@@ -137,7 +125,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("_"));
 			break;
 
-		case Constantes.MOVIMENTOS_EXTERNOS:
+		case Constantes.MOVIMENTOS:
 			gridArray.add(new Visografema("à"));
 			gridArray.add(new Visografema("á"));
 			gridArray.add(new Visografema("â"));
@@ -158,9 +146,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("ö"));
 			gridArray.add(new Visografema("ù"));
 			gridArray.add(new Visografema("ú"));
-			break;
-
-		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_INTERNOS:
+//		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_INTERNOS:
 			gridArray.add(new Visografema("û"));
 			gridArray.add(new Visografema("ü"));
 			gridArray.add(new Visografema("À"));
@@ -173,9 +159,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("Ê"));
 			gridArray.add(new Visografema("Ë"));
 			gridArray.add(new Visografema("Ì"));
-			break;
-
-		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_SEM_AS_MAOS:
+//		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_SEM_AS_MAOS:
 			gridArray.add(new Visografema("Í"));
 			gridArray.add(new Visografema("Î"));
 			gridArray.add(new Visografema("Ï"));
@@ -190,41 +174,41 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("Ü"));
 			break;
 
-		case Constantes.DIACRITICOS:
-			gridArray.add(new Visografema("n"));
-			gridArray.add(new Visografema("m"));
-			gridArray.add(new Visografema("<"));
-			gridArray.add(new Visografema(">"));
-			gridArray.add(new Visografema("§"));
-			break;
-
-		case Constantes.PONTUACAO:
-			gridArray.add(new Visografema("/"));
-			gridArray.add(new Visografema("b"));
-			gridArray.add(new Visografema("-"));
-			gridArray.add(new Visografema(":"));
-			gridArray.add(new Visografema("."));
-			gridArray.add(new Visografema(","));
-			gridArray.add(new Visografema("?"));
-			gridArray.add(new Visografema("!"));
-			gridArray.add(new Visografema("Ý"));
-			gridArray.add(new Visografema("ý"));
-			gridArray.add(new Visografema("("));
-			gridArray.add(new Visografema(")"));
-			break;
-
-		case Constantes.NUMEROS:
-			gridArray.add(new Visografema("1"));
-			gridArray.add(new Visografema("2"));
-			gridArray.add(new Visografema("3"));
-			gridArray.add(new Visografema("4"));
-			gridArray.add(new Visografema("5"));
-			gridArray.add(new Visografema("6"));
-			gridArray.add(new Visografema("7"));
-			gridArray.add(new Visografema("8"));
-			gridArray.add(new Visografema("9"));
-			gridArray.add(new Visografema("0"));
-			break;
+//		case Constantes.DIACRITICOS:
+//			gridArray.add(new Visografema("n"));
+//			gridArray.add(new Visografema("m"));
+//			gridArray.add(new Visografema("<"));
+//			gridArray.add(new Visografema(">"));
+//			gridArray.add(new Visografema("§"));
+//			break;
+//
+//		case Constantes.PONTUACAO:
+//			gridArray.add(new Visografema("/"));
+//			gridArray.add(new Visografema("b"));
+//			gridArray.add(new Visografema("-"));
+//			gridArray.add(new Visografema(":"));
+//			gridArray.add(new Visografema("."));
+//			gridArray.add(new Visografema(","));
+//			gridArray.add(new Visografema("?"));
+//			gridArray.add(new Visografema("!"));
+//			gridArray.add(new Visografema("Ý"));
+//			gridArray.add(new Visografema("ý"));
+//			gridArray.add(new Visografema("("));
+//			gridArray.add(new Visografema(")"));
+//			break;
+//
+//		case Constantes.NUMEROS:
+//			gridArray.add(new Visografema("1"));
+//			gridArray.add(new Visografema("2"));
+//			gridArray.add(new Visografema("3"));
+//			gridArray.add(new Visografema("4"));
+//			gridArray.add(new Visografema("5"));
+//			gridArray.add(new Visografema("6"));
+//			gridArray.add(new Visografema("7"));
+//			gridArray.add(new Visografema("8"));
+//			gridArray.add(new Visografema("9"));
+//			gridArray.add(new Visografema("0"));
+//			break;
 		}
 	}
 }

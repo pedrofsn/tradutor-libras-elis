@@ -7,17 +7,11 @@
     <string name="teste">Teste</string>
 
     <!-- GRUPOS DE VISOGRAFEMAS -->
-    <string name="CONFIGURACOES_DE_DEDO_POLEGAR">POLEGAR</string>
-    <string name="CONFIGURACOES_DE_DEDO_DEMAIS_DEDOS">DEMAIS DEDOS</string>
-    <string name="ORIENTACAO_DA_PALMA">ORIENTAÇÃO DE PALMA</string>
-    <string name="PONTOS_DE_ARTICULACAO_CABECA">CABEÇA</string>
-    <string name="PONTOS_DE_ARTICULACAO_TRONCO">TRONCO</string>
-    <string name="PONTOS_DE_ARTICULACAO_MEMBROS">MEMBROS</string>
-    <string name="PONTOS_DE_ARTICULACAO_MAO">MÃO</string>
-    <string name="MOVIMENTOS_EXTERNOS">MOVIMENTOS EXTERNOS</string>
-    <string name="MOVIMENTOS_EXTERNOS_MOVIMENTOS_INTERNOS">MOVIMENTOS INTERNOS</string>
-    <string name="MOVIMENTOS_EXTERNOS_MOVIMENTOS_SEM_AS_MAOS">MOVIMENTOS SEM AS MÃOS</string>
-    <string name="DIACRITICOS">DIACRÍTICOS</string>
+    <string name="configuracao_de_dedo">CONFIGURAÇÃO DE DEDO</string>
+    <string name="orientacao_de_palma">ORIENTAÇÃO DE PALMA</string>
+    <string name="pontos_de_articulacao">PONTOS DE ARTICULAÇÃO</string>
+    <string name="movimentos">MOVIMENTOS</string>
+    
     <string name="PONTUACAO">PONTUAÇÃO</string>
     <string name="NUMEROS">NÚMEROS</string>
 

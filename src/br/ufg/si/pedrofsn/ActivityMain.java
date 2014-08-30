@@ -33,8 +33,10 @@ import android.widget.Toast;
 import br.ufg.si.pedrofsn.AsyncTaskPOST.InterfaceAsyncTaskPostCallback;
 import br.ufg.si.pedrofsn.model.ELiS;
 import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
+import br.ufg.si.pedrofsn.teclado.interfaces.IOnClick;
+import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
-public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, OnClickListener {
+public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, OnClickListener, IOnClick {
 
 	private AdapterViewPager adapterViewPager;
 
@@ -142,6 +144,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 	private String getTermoInseridoPeloUsuario() {
 		return LINGUAGEM_ATUAL == 1 ? textViewElis.getText().toString() : editTextPtBr.getText().toString();
+	}
+
+	@Override
+	public void getVisografemaClicado(Visografema visografema) {
+		textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis().toString());
+		Utils.aplicarFonteElis(this, textViewElis);
 	}
 
 }
