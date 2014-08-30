@@ -21,31 +21,30 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.ufg.si.pedrofsn.AsyncTaskPOST.InterfaceAsyncTaskPostCallback;
 import br.ufg.si.pedrofsn.model.ELiS;
-import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
+import br.ufg.si.pedrofsn.teclado.FragmentElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.interfaces.IOnClick;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, OnClickListener, IOnClick {
 
-	private AdapterViewPager adapterViewPager;
-
-	private ViewPager viewPager;
 
 	private int LINGUAGEM_ATUAL = 0;
 
 	private TextView textViewDe;
 	private LinearLayout linearLayoutTrocaLinguagem;
+	private FrameLayout frameLayoutKeyboardElis;
 	private TextView textViewPara;
 	private ImageView imageViewTraduzir;
 	private EditText editTextPtBr;
@@ -55,19 +54,18 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_main);
 
 		textViewDe = (TextView) findViewById(R.id.textViewDe);
+		frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
 		linearLayoutTrocaLinguagem = (LinearLayout) findViewById(R.id.linearLayoutTrocaLinguagem);
 		textViewPara = (TextView) findViewById(R.id.textViewPara);
 		imageViewTraduzir = (ImageView) findViewById(R.id.imageViewTraduzir);
 		editTextPtBr = (EditText) findViewById(R.id.editTextPtBr);
 		textViewElis = (TextView) findViewById(R.id.textViewElis);
-		viewPager = (ViewPager) findViewById(R.id.viewPager);
 
 		// INICIA A TELA COM O KEBYOARD-ELIS FECHADO
-		viewPager.setVisibility(View.GONE);
+		frameLayoutKeyboardElis.setVisibility(View.GONE);
 
 		CalculoTamanhoTela calculoTamanhoTela = new CalculoTamanhoTela(this);
 		int maxHeight = (int) (calculoTamanhoTela.getHeightScreen() * 0.5);
@@ -77,12 +75,10 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 		termo = new ELiS();
 
-		adapterViewPager = new AdapterViewPager(this, getSupportFragmentManager());
-
 		linearLayoutTrocaLinguagem.setOnClickListener(this);
 		imageViewTraduzir.setOnClickListener(this);
-		viewPager.setAdapter(adapterViewPager);
-
+		
+		Navegacao.showFragment(new FragmentElisKeyboard(), getSupportFragmentManager(), "teste", R.id.frameLayoutKeyboardElis);
 	}
 
 	@Override
@@ -125,14 +121,14 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 			textViewPara.setText(getString(R.string.portugues));
 			textViewElis.setVisibility(View.VISIBLE);
 			editTextPtBr.setVisibility(View.GONE);
-			viewPager.setVisibility(View.VISIBLE);
+			frameLayoutKeyboardElis.setVisibility(View.VISIBLE);
 			LINGUAGEM_ATUAL = 1;
 		} else {
 			textViewDe.setText(getString(R.string.portugues));
 			textViewPara.setText(getString(R.string.elis));
 			textViewElis.setVisibility(View.GONE);
 			editTextPtBr.setVisibility(View.VISIBLE);
-			viewPager.setVisibility(View.GONE);
+			frameLayoutKeyboardElis.setVisibility(View.GONE);
 			LINGUAGEM_ATUAL = 0;
 		}
 

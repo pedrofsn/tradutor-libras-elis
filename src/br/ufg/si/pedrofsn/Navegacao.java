@@ -18,6 +18,16 @@ public class Navegacao {
 		}
 	}
 
+	// SETAR FRAGMENTS INICIAS SEM ADICIONAR AO BACKSTACK - PILHA
+	public static void showFragmentInicial(Fragment frag, FragmentManager fm, String tag, int idLayout) {
+		if (fm.findFragmentByTag(tag) == null) {
+
+			FragmentTransaction ft = fm.beginTransaction();
+			ft.replace(idLayout, frag, tag);
+			ft.commit();
+		}
+	}
+
 	// IR PARA O FRAGMENT JÁ INSTANCIADO
 	public static void showFragment(FragmentManager fm, String tag) {
 		fm.popBackStackImmediate(tag, 0);

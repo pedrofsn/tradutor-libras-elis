@@ -1,28 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayoutPai"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="4" >
 
     <include
+        android:id="@+id/include"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         layout="@layout/fragment_conteudo" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <FrameLayout
+        android:id="@+id/frameLayoutKeyboardElis"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp" >
-
-        <android.support.v4.view.PagerTitleStrip
-            android:id="@+id/pager_title_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#abcdef"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
-            android:textColor="#fff" />
-    </android.support.v4.view.ViewPager>
+        android:layout_height="0dp"
+        android:layout_weight="2" />
 
 </LinearLayout>
