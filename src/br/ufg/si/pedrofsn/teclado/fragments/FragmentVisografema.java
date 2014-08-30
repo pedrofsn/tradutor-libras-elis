@@ -72,9 +72,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("h"));
 			gridArray.add(new Visografema("¢"));
 			gridArray.add(new Visografema("¬"));
-			// R ?
 			gridArray.add(new Visografema("j"));
-			// S ?
 			gridArray.add(new Visografema("k"));
 			break;
 
@@ -86,7 +84,7 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("c"));
 			gridArray.add(new Visografema("v"));
 			break;
-			
+
 		case Constantes.PONTOS_DE_ARTICULACAO:
 			gridArray.add(new Visografema("Q"));
 			gridArray.add(new Visografema("W"));
@@ -146,7 +144,6 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("ö"));
 			gridArray.add(new Visografema("ù"));
 			gridArray.add(new Visografema("ú"));
-//		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_INTERNOS:
 			gridArray.add(new Visografema("û"));
 			gridArray.add(new Visografema("ü"));
 			gridArray.add(new Visografema("À"));
@@ -159,7 +156,6 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("Ê"));
 			gridArray.add(new Visografema("Ë"));
 			gridArray.add(new Visografema("Ì"));
-//		case Constantes.MOVIMENTOS_EXTERNOS_MOVIMENTOS_SEM_AS_MAOS:
 			gridArray.add(new Visografema("Í"));
 			gridArray.add(new Visografema("Î"));
 			gridArray.add(new Visografema("Ï"));
@@ -174,41 +170,42 @@ public class FragmentVisografema extends Fragment {
 			gridArray.add(new Visografema("Ü"));
 			break;
 
-//		case Constantes.DIACRITICOS:
-//			gridArray.add(new Visografema("n"));
-//			gridArray.add(new Visografema("m"));
-//			gridArray.add(new Visografema("<"));
-//			gridArray.add(new Visografema(">"));
-//			gridArray.add(new Visografema("§"));
-//			break;
-//
-//		case Constantes.PONTUACAO:
-//			gridArray.add(new Visografema("/"));
-//			gridArray.add(new Visografema("b"));
-//			gridArray.add(new Visografema("-"));
-//			gridArray.add(new Visografema(":"));
-//			gridArray.add(new Visografema("."));
-//			gridArray.add(new Visografema(","));
-//			gridArray.add(new Visografema("?"));
-//			gridArray.add(new Visografema("!"));
-//			gridArray.add(new Visografema("Ý"));
-//			gridArray.add(new Visografema("ý"));
-//			gridArray.add(new Visografema("("));
-//			gridArray.add(new Visografema(")"));
-//			break;
-//
-//		case Constantes.NUMEROS:
-//			gridArray.add(new Visografema("1"));
-//			gridArray.add(new Visografema("2"));
-//			gridArray.add(new Visografema("3"));
-//			gridArray.add(new Visografema("4"));
-//			gridArray.add(new Visografema("5"));
-//			gridArray.add(new Visografema("6"));
-//			gridArray.add(new Visografema("7"));
-//			gridArray.add(new Visografema("8"));
-//			gridArray.add(new Visografema("9"));
-//			gridArray.add(new Visografema("0"));
-//			break;
+		case Constantes.PONTUACAO:
+			gridArray.add(new Visografema("/"));
+			gridArray.add(new Visografema("b"));
+			gridArray.add(new Visografema("-"));
+			gridArray.add(new Visografema(":"));
+			gridArray.add(new Visografema("."));
+			gridArray.add(new Visografema(","));
+			gridArray.add(new Visografema("?"));
+			gridArray.add(new Visografema("!"));
+			gridArray.add(new Visografema("Ý"));
+			gridArray.add(new Visografema("ý"));
+			gridArray.add(new Visografema("("));
+			gridArray.add(new Visografema(")"));
+			break;
+
+		case Constantes.NUMEROS:
+			gridArray.add(new Visografema("1"));
+			gridArray.add(new Visografema("2"));
+			gridArray.add(new Visografema("3"));
+			gridArray.add(new Visografema("4"));
+			gridArray.add(new Visografema("5"));
+			gridArray.add(new Visografema("6"));
+			gridArray.add(new Visografema("7"));
+			gridArray.add(new Visografema("8"));
+			gridArray.add(new Visografema("9"));
+			gridArray.add(new Visografema("0"));
+			break;
+
+		// case Constantes.DIACRITICOS:
+		// gridArray.add(new Visografema("n"));
+		// gridArray.add(new Visografema("m"));
+		// gridArray.add(new Visografema("<"));
+		// gridArray.add(new Visografema(">"));
+		// gridArray.add(new Visografema("§"));
+		// break;
+
 		}
 	}
 }

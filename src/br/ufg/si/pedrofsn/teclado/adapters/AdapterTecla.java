@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,7 +49,8 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 		}
 
 		final Visografema visografemaAtual = data.get(position);
-		holder.buttonTecla.setText(Html.fromHtml(visografemaAtual.getValorElis()));
+//		holder.buttonTecla.setText(Html.fromHtml(visografemaAtual.getValorElis()));
+		holder.buttonTecla.setText(visografemaAtual.getValorElis());
 		holder.buttonTecla.setContentDescription(visografemaAtual.getValorElis());
 		holder.buttonTecla.setOnClickListener(new OnClickListener() {
 			@Override

@@ -1089,6 +1089,9 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
+        public static final int buttonEspaco=0x7f05004f;
+        public static final int buttonSobrescrito=0x7f05004e;
+        public static final int buttonSublinhado=0x7f050050;
         public static final int buttonTecla=0x7f050040;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
@@ -1112,6 +1115,7 @@ containing a value of this type.
         public static final int include=0x7f05003d;
         public static final int linearLayoutAreaInput=0x7f050047;
         public static final int linearLayoutBlocoDeSelecaoDeLinguagens=0x7f050042;
+        public static final int linearLayoutBotoesAuxiliares=0x7f05004b;
         public static final int linearLayoutConteudo=0x7f050041;
         public static final int linearLayoutElisKeyboard=0x7f05004a;
         public static final int linearLayoutTrocaLinguagem=0x7f050044;
@@ -1121,7 +1125,7 @@ containing a value of this type.
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
-        public static final int pager_title_strip=0x7f05004c;
+        public static final int pager_title_strip=0x7f05004d;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
@@ -1150,7 +1154,7 @@ containing a value of this type.
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
-        public static final int viewPager=0x7f05004b;
+        public static final int viewPager=0x7f05004c;
         public static final int withText=0x7f05000c;
     }
     public static final class integer {

@@ -249,6 +249,9 @@ int id action_mode_close_button 0x7f050024
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
+int id buttonEspaco 0x7f05004f
+int id buttonSobrescrito 0x7f05004e
+int id buttonSublinhado 0x7f050050
 int id buttonTecla 0x7f050040
 int id checkbox 0x7f05002d
 int id collapseActionView 0x7f05000d
@@ -272,6 +275,7 @@ int id imageViewTraduzir 0x7f050046
 int id include 0x7f05003d
 int id linearLayoutAreaInput 0x7f050047
 int id linearLayoutBlocoDeSelecaoDeLinguagens 0x7f050042
+int id linearLayoutBotoesAuxiliares 0x7f05004b
 int id linearLayoutConteudo 0x7f050041
 int id linearLayoutElisKeyboard 0x7f05004a
 int id linearLayoutTrocaLinguagem 0x7f050044
@@ -281,7 +285,7 @@ int id middle 0x7f050012
 int id never 0x7f050009
 int id none 0x7f050010
 int id normal 0x7f050000
-int id pager_title_strip 0x7f05004c
+int id pager_title_strip 0x7f05004d
 int id progress_circular 0x7f050018
 int id progress_horizontal 0x7f050019
 int id radio 0x7f05002f
@@ -310,7 +314,7 @@ int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
 int id useLogo 0x7f050003
-int id viewPager 0x7f05004b
+int id viewPager 0x7f05004c
 int id withText 0x7f05000c
 int integer abc_max_action_buttons 0x7f090000
 int layout abc_action_bar_decor 0x7f030000

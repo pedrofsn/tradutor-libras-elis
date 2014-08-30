@@ -77,6 +77,8 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 		linearLayoutTrocaLinguagem.setOnClickListener(this);
 		imageViewTraduzir.setOnClickListener(this);
+
+		Utils.aplicarFonteElis(this, textViewElis);
 		
 		Navegacao.showFragment(new FragmentElisKeyboard(), getSupportFragmentManager(), "teste", R.id.frameLayoutKeyboardElis);
 	}
@@ -145,7 +147,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 	@Override
 	public void getVisografemaClicado(Visografema visografema) {
 		textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis().toString());
-		Utils.aplicarFonteElis(this, textViewElis);
 	}
 
 }
