@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils;
-import br.ufg.si.pedrofsn.teclado.interfaces.IOnClick;
+import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class AdapterTecla extends ArrayAdapter<Visografema> {
@@ -20,14 +20,14 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 	private Context context;
 	private int layoutResourceId;
 	private List<Visografema> data;
-	private IOnClick callback;
+	private IElisKeyboard callback;
 
 	public AdapterTecla(Context context, int layoutResourceId, List<Visografema> gridArray) {
 		super(context, layoutResourceId, gridArray);
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.data = gridArray;
-		this.callback = (IOnClick) context;
+		this.callback = (IElisKeyboard) context;
 	}
 
 	@Override

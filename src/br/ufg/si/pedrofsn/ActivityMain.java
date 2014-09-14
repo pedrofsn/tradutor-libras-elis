@@ -39,10 +39,10 @@ import android.widget.Toast;
 import br.ufg.si.pedrofsn.AsyncTaskPOST.InterfaceAsyncTaskPostCallback;
 import br.ufg.si.pedrofsn.model.ELiS;
 import br.ufg.si.pedrofsn.teclado.FragmentElisKeyboard;
-import br.ufg.si.pedrofsn.teclado.interfaces.IOnClick;
+import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
-public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, OnClickListener, IOnClick {
+public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, IElisKeyboard, OnClickListener {
 
 	private int LINGUAGEM_ATUAL = 0;
 
@@ -155,6 +155,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 	@Override
 	public void getVisografemaClicado(Visografema visografema) {
 		textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis().toString());
+	}
+
+	@Override
+	public void setAcaoBotaoAdicional() {
+		// TODO Setar a ação dos botões adicionais (espaço, x² e _)
+		
 	}
 
 	@Override
