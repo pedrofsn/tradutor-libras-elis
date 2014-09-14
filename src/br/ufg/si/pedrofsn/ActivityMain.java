@@ -19,16 +19,21 @@ package br.ufg.si.pedrofsn;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.text.Html;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.ufg.si.pedrofsn.AsyncTaskPOST.InterfaceAsyncTaskPostCallback;
@@ -39,16 +44,17 @@ import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, OnClickListener, IOnClick {
 
-
 	private int LINGUAGEM_ATUAL = 0;
 
 	private TextView textViewDe;
-	private LinearLayout linearLayoutTrocaLinguagem;
+	private ImageView imageViewTrocaLinguagem;
 	private FrameLayout frameLayoutKeyboardElis;
 	private TextView textViewPara;
 	private ImageView imageViewTraduzir;
 	private EditText editTextPtBr;
 	private TextView textViewElis;
+
+	private Animation animationRotacionar;
 
 	private ELiS termo;
 
@@ -58,28 +64,29 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
 		textViewDe = (TextView) findViewById(R.id.textViewDe);
 		frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
-		linearLayoutTrocaLinguagem = (LinearLayout) findViewById(R.id.linearLayoutTrocaLinguagem);
+		imageViewTrocaLinguagem = (ImageView) findViewById(R.id.imageViewTrocaLinguagem);
 		textViewPara = (TextView) findViewById(R.id.textViewPara);
 		imageViewTraduzir = (ImageView) findViewById(R.id.imageViewTraduzir);
 		editTextPtBr = (EditText) findViewById(R.id.editTextPtBr);
 		textViewElis = (TextView) findViewById(R.id.textViewElis);
 
-		// INICIA A TELA COM O KEBYOARD-ELIS FECHADO
+		// Carrega animação
+		animationRotacionar = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotacionar);
+
+		// Inicia com o keyboard-elis fechado
 		frameLayoutKeyboardElis.setVisibility(View.GONE);
 
 		CalculoTamanhoTela calculoTamanhoTela = new CalculoTamanhoTela(this);
 		int maxHeight = (int) (calculoTamanhoTela.getHeightScreen() * 0.5);
 		editTextPtBr.setMaxHeight(maxHeight);
-		Log.e("teste", "calculoTamanhoTela.getHeightScreen() = " + calculoTamanhoTela.getHeightScreen());
-		Log.e("teste", "maxHeight = " + maxHeight);
 
 		termo = new ELiS();
 
-		linearLayoutTrocaLinguagem.setOnClickListener(this);
+		imageViewTrocaLinguagem.setOnClickListener(this);
 		imageViewTraduzir.setOnClickListener(this);
 
 		Utils.aplicarFonteElis(this, textViewElis);
-		
+
 		Navegacao.showFragment(new FragmentElisKeyboard(), getSupportFragmentManager(), "teste", R.id.frameLayoutKeyboardElis);
 	}
 
@@ -111,13 +118,14 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 			httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
 			break;
 
-		case R.id.linearLayoutTrocaLinguagem:
+		case R.id.imageViewTrocaLinguagem:
 			chavearLinguagem();
 			break;
 		}
 	}
 
 	private void chavearLinguagem() {
+		imageViewTrocaLinguagem.startAnimation(animationRotacionar);
 		if (textViewDe.getText().toString().equalsIgnoreCase(getString(R.string.portugues))) {
 			textViewDe.setText(getString(R.string.elis));
 			textViewPara.setText(getString(R.string.portugues));
@@ -147,6 +155,31 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 	@Override
 	public void getVisografemaClicado(Visografema visografema) {
 		textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis().toString());
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.sobre:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(Html.fromHtml("Este aplicativo está sendo desenvolvido por Pedro Francisco de Sousa Neto, graduando em Sistemas de Informação pela Universidade Federal de Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Orientador)</li> <br /> <li>-Profa. Dra. Mariângela Estelita Barros (Coorientadora)</li>")).setTitle(R.string.sobre).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.dismiss();
+				}
+			});
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 }

@@ -24,32 +24,12 @@
                 android:gravity="center"
                 android:text="@string/portugues" />
 
-            <LinearLayout
-                android:id="@+id/linearLayoutTrocaLinguagem"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/imageViewTrocaLinguagem"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal" >
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="5dp"
-                    android:background="#000000" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:src="@android:drawable/ic_media_pause" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="5dp"
-                    android:background="#000000" />
-            </LinearLayout>
+                android:src="@drawable/ic_seta" />
 
             <TextView
                 android:id="@+id/textViewPara"
@@ -69,7 +49,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:src="@android:drawable/ic_media_play" />
+            android:src="@drawable/ic_traduzir" />
     </RelativeLayout>
 
     <LinearLayout

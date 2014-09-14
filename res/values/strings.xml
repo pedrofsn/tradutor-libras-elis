@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">tradutor-libras-elis</string>
+    <string name="app_name">ELiS Mobile</string>
+    <string name="sobre">Sobre</string>
     <string name="elis">ELIS</string>
     <string name="portugues">PT-BR</string>
     <string name="teste">Teste</string>
+    
+    <!-- DIALOG --> 
 
     <!-- GRUPOS DE VISOGRAFEMAS -->
     <string name="configuracao_de_dedo">CONFIGURAÇÃO DE DEDO</string>
     <string name="orientacao_de_palma">ORIENTAÇÃO DE PALMA</string>
     <string name="pontos_de_articulacao">PONTOS DE ARTICULAÇÃO</string>
-    <string name="movimentos">MOVIMENTOS</string>
-    
+    <string name="movimentos">MOVIMENTOS</string> 
     <string name="PONTUACAO">PONTUAÇÃO</string>
     <string name="NUMEROS">NÚMEROS</string>
 

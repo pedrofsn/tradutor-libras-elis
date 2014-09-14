@@ -15,6 +15,7 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int rotacionar=0x7f040006;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1073,6 +1074,8 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int ic_launcher=0x7f020057;
+        public static final int ic_seta=0x7f020058;
+        public static final int ic_traduzir=0x7f020059;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1112,13 +1115,13 @@ containing a value of this type.
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
         public static final int imageViewTraduzir=0x7f050046;
+        public static final int imageViewTrocaLinguagem=0x7f050044;
         public static final int include=0x7f05003d;
         public static final int linearLayoutAreaInput=0x7f050047;
         public static final int linearLayoutBlocoDeSelecaoDeLinguagens=0x7f050042;
         public static final int linearLayoutBotoesAuxiliares=0x7f05004b;
         public static final int linearLayoutConteudo=0x7f050041;
         public static final int linearLayoutElisKeyboard=0x7f05004a;
-        public static final int linearLayoutTrocaLinguagem=0x7f050044;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
@@ -1144,6 +1147,7 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
+        public static final int sobre=0x7f050051;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
@@ -1214,9 +1218,12 @@ containing a value of this type.
         public static final int fragment_elis_keyboard=0x7f03001c;
         public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
+    public static final class menu {
+        public static final int menu=0x7f0c0000;
+    }
     public static final class string {
-        public static final int NUMEROS=0x7f0a0016;
-        public static final int PONTUACAO=0x7f0a0015;
+        public static final int NUMEROS=0x7f0a0017;
+        public static final int PONTUACAO=0x7f0a0016;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1258,15 +1265,17 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int app_name=0x7f0a000d;
-        /**  GRUPOS DE VISOGRAFEMAS 
+        /**  DIALOG 
+ GRUPOS DE VISOGRAFEMAS 
          */
-        public static final int configuracao_de_dedo=0x7f0a0011;
-        public static final int elis=0x7f0a000e;
-        public static final int movimentos=0x7f0a0014;
-        public static final int orientacao_de_palma=0x7f0a0012;
-        public static final int pontos_de_articulacao=0x7f0a0013;
-        public static final int portugues=0x7f0a000f;
-        public static final int teste=0x7f0a0010;
+        public static final int configuracao_de_dedo=0x7f0a0012;
+        public static final int elis=0x7f0a000f;
+        public static final int movimentos=0x7f0a0015;
+        public static final int orientacao_de_palma=0x7f0a0013;
+        public static final int pontos_de_articulacao=0x7f0a0014;
+        public static final int portugues=0x7f0a0010;
+        public static final int sobre=0x7f0a000e;
+        public static final int teste=0x7f0a0011;
     }
     public static final class style {
         /** 
