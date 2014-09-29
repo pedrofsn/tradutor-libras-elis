@@ -15,7 +15,7 @@ import br.ufg.si.pedrofsn.teclado.adapters.AdapterTecla;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 import br.ufg.si.pedrofsn.R;
 
-public class FragmentVisografema extends Fragment {
+public class FragmentElisKeyboard extends Fragment {
 
     private GridView gridView;
     private AdapterTecla customGridAdapter;

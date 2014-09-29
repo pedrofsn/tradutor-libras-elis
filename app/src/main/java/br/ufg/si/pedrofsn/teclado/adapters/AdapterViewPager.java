@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import br.ufg.si.pedrofsn.teclado.Constantes;
-import br.ufg.si.pedrofsn.teclado.fragments.FragmentVisografema;
+import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
 import br.ufg.si.pedrofsn.R;
 
 public class AdapterViewPager extends FragmentStatePagerAdapter {
@@ -23,7 +23,7 @@ public class AdapterViewPager extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int posicao) {
 
-        Fragment fragment = new FragmentVisografema();
+        Fragment fragment = new FragmentElisKeyboard();
         Bundle bundle = new Bundle();
         bundle.putInt("numeroGrupoDeVisografemas", posicao);
         fragment.setArguments(bundle);
