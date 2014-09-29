@@ -1,4 +1,4 @@
-package br.ufg.si.pedrofsn;
+package br.ufg.si.pedrofsn.Utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

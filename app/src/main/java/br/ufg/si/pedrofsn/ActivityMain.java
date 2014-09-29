@@ -29,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentTelaTradutor;

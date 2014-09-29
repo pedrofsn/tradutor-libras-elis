@@ -12,7 +12,7 @@ import android.widget.Button;
 import java.util.List;
 
 import br.ufg.si.pedrofsn.R;
-import br.ufg.si.pedrofsn.Utils;
+import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 

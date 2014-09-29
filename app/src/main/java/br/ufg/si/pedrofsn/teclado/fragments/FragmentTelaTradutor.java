@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import br.ufg.si.pedrofsn.ActivityMain;
 import br.ufg.si.pedrofsn.AsyncTaskPOST;
 import br.ufg.si.pedrofsn.R;
-import br.ufg.si.pedrofsn.Utils;
+import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
