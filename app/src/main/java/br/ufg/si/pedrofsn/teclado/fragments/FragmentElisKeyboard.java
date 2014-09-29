@@ -1,204 +1,77 @@
 package br.ufg.si.pedrofsn.teclado.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.ufg.si.pedrofsn.teclado.Constantes;
-import br.ufg.si.pedrofsn.teclado.adapters.AdapterTecla;
-import br.ufg.si.pedrofsn.teclado.models.Visografema;
 import br.ufg.si.pedrofsn.R;
+import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
+import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
+import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 
-public class FragmentElisKeyboard extends Fragment {
+public class FragmentElisKeyboard extends Fragment implements OnClickListener {
 
-    private GridView gridView;
-    private AdapterTecla customGridAdapter;
-    private List<Visografema> gridArray;
+    public static String TAG = "FragmentElisKeyboard";
+
+    private AdapterViewPager adapterViewPager;
+    private ViewPager viewPager;
+    private Button buttonSobrescrito;
+    private Button buttonEspaco;
+    private Button buttonSublinhado;
+
+    private CallbackFragmentToActivity callback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.adapter_conjunto_teclas, container, false);
-
-        gridArray = new ArrayList<Visografema>();
-
-        Bundle args = getArguments();
-
-        setVisografemasNoGrupoAtual(args.getInt("numeroGrupoDeVisografemas"));
-
-        gridView = (GridView) rootView.findViewById(R.id.gridViewTeclas);
-
-        // desenvolver e montar o listener dos botões aqui
-        customGridAdapter = new AdapterTecla(getActivity(), R.layout.adapter_tecla, gridArray);
-
-        gridView.setAdapter(customGridAdapter);
-
+        View rootView = inflater.inflate(R.layout.fragment_elis_keyboard, container, false);
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        buttonSobrescrito = (Button) rootView.findViewById(R.id.buttonSobrescrito);
+        buttonEspaco = (Button) rootView.findViewById(R.id.buttonEspaco);
+        buttonSublinhado = (Button) rootView.findViewById(R.id.buttonSublinhado);
         return rootView;
     }
 
-    private void setVisografemasNoGrupoAtual(int numeroGrupoDeVisografemas) {
-        // Sem este IF, o array continua a ser populado por novas "teclas", mas
-        // sem renderizar na tela.
-        if (gridArray.size() >= 0) {
-            gridArray.clear();
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapterViewPager = new AdapterViewPager(getActivity(), getFragmentManager());
+        viewPager.setAdapter(adapterViewPager);
+        buttonSobrescrito.setOnClickListener(this);
+        buttonEspaco.setOnClickListener(this);
+        buttonSublinhado.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonSobrescrito:
+                callback.botaoPressionado(TipoBotaoEspecial.SOBRESCRITO);
+                break;
+            case R.id.buttonEspaco:
+                callback.botaoPressionado(TipoBotaoEspecial.ESPACO);
+                break;
+            case R.id.buttonSublinhado:
+                callback.botaoPressionado(TipoBotaoEspecial.SUBLINHADO);
+                break;
         }
+    }
 
-        switch (numeroGrupoDeVisografemas) {
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
-            case Constantes.CONFIGURACAO_DE_DEDO:
-                gridArray.add(new Visografema("q"));
-                gridArray.add(new Visografema("w"));
-                gridArray.add(new Visografema("e"));
-                gridArray.add(new Visografema("r"));
-                gridArray.add(new Visografema("t"));
-                gridArray.add(new Visografema("y"));
-                gridArray.add(new Visografema("u"));
-                gridArray.add(new Visografema("i"));
-                gridArray.add(new Visografema("o"));
-                gridArray.add(new Visografema("p"));
-                gridArray.add(new Visografema("¹"));
-                gridArray.add(new Visografema("²"));
-                gridArray.add(new Visografema("a"));
-                gridArray.add(new Visografema("s"));
-                gridArray.add(new Visografema("d"));
-                gridArray.add(new Visografema("³"));
-                gridArray.add(new Visografema("£"));
-                gridArray.add(new Visografema("f"));
-                gridArray.add(new Visografema("g"));
-                gridArray.add(new Visografema("h"));
-                gridArray.add(new Visografema("¢"));
-                gridArray.add(new Visografema("¬"));
-                gridArray.add(new Visografema("j"));
-                gridArray.add(new Visografema("k"));
-                break;
-
-            case Constantes.ORIENTACAO_DE_PALMA:
-                gridArray.add(new Visografema("l"));
-                gridArray.add(new Visografema("ç"));
-                gridArray.add(new Visografema("z"));
-                gridArray.add(new Visografema("x"));
-                gridArray.add(new Visografema("c"));
-                gridArray.add(new Visografema("v"));
-                break;
-
-            case Constantes.PONTOS_DE_ARTICULACAO:
-                gridArray.add(new Visografema("Q"));
-                gridArray.add(new Visografema("W"));
-                gridArray.add(new Visografema("E"));
-                gridArray.add(new Visografema("R"));
-                gridArray.add(new Visografema("T"));
-                gridArray.add(new Visografema("Y"));
-                gridArray.add(new Visografema("U"));
-                gridArray.add(new Visografema("I"));
-                gridArray.add(new Visografema("O"));
-                gridArray.add(new Visografema("P"));
-                gridArray.add(new Visografema("A"));
-                gridArray.add(new Visografema("S"));
-                gridArray.add(new Visografema("D"));
-                gridArray.add(new Visografema("F"));
-                gridArray.add(new Visografema("G"));
-                gridArray.add(new Visografema("H"));
-                gridArray.add(new Visografema("J"));
-                gridArray.add(new Visografema("K"));
-                gridArray.add(new Visografema("L"));
-                gridArray.add(new Visografema("Ç"));
-                gridArray.add(new Visografema("\\"));
-                gridArray.add(new Visografema("Z"));
-                gridArray.add(new Visografema("X"));
-                gridArray.add(new Visografema("C"));
-                gridArray.add(new Visografema("V"));
-                gridArray.add(new Visografema("B"));
-                gridArray.add(new Visografema("N"));
-                gridArray.add(new Visografema("M"));
-                gridArray.add(new Visografema("@"));
-                gridArray.add(new Visografema("#"));
-                gridArray.add(new Visografema("$"));
-                gridArray.add(new Visografema("%"));
-                gridArray.add(new Visografema("&"));
-                gridArray.add(new Visografema("*"));
-                gridArray.add(new Visografema("_"));
-                break;
-
-            case Constantes.MOVIMENTOS:
-                gridArray.add(new Visografema("à"));
-                gridArray.add(new Visografema("á"));
-                gridArray.add(new Visografema("â"));
-                gridArray.add(new Visografema("ã"));
-                gridArray.add(new Visografema("ä"));
-                gridArray.add(new Visografema("è"));
-                gridArray.add(new Visografema("é"));
-                gridArray.add(new Visografema("ê"));
-                gridArray.add(new Visografema("ë"));
-                gridArray.add(new Visografema("ì"));
-                gridArray.add(new Visografema("í"));
-                gridArray.add(new Visografema("î"));
-                gridArray.add(new Visografema("ï"));
-                gridArray.add(new Visografema("ò"));
-                gridArray.add(new Visografema("ó"));
-                gridArray.add(new Visografema("ô"));
-                gridArray.add(new Visografema("õ"));
-                gridArray.add(new Visografema("ö"));
-                gridArray.add(new Visografema("ù"));
-                gridArray.add(new Visografema("ú"));
-                gridArray.add(new Visografema("û"));
-                gridArray.add(new Visografema("ü"));
-                gridArray.add(new Visografema("À"));
-                gridArray.add(new Visografema("Á"));
-                gridArray.add(new Visografema("Â"));
-                gridArray.add(new Visografema("Ã"));
-                gridArray.add(new Visografema("Ä"));
-                gridArray.add(new Visografema("È"));
-                gridArray.add(new Visografema("É"));
-                gridArray.add(new Visografema("Ê"));
-                gridArray.add(new Visografema("Ë"));
-                gridArray.add(new Visografema("Ì"));
-                gridArray.add(new Visografema("Í"));
-                gridArray.add(new Visografema("Î"));
-                gridArray.add(new Visografema("Ï"));
-                gridArray.add(new Visografema("Ò"));
-                gridArray.add(new Visografema("Ó"));
-                gridArray.add(new Visografema("Ô"));
-                gridArray.add(new Visografema("Õ"));
-                gridArray.add(new Visografema("Ö"));
-                gridArray.add(new Visografema("Ù"));
-                gridArray.add(new Visografema("Ú"));
-                gridArray.add(new Visografema("Û"));
-                gridArray.add(new Visografema("Ü"));
-                break;
-
-            case Constantes.PONTUACAO:
-                gridArray.add(new Visografema("/"));
-                gridArray.add(new Visografema("b"));
-                gridArray.add(new Visografema("-"));
-                gridArray.add(new Visografema(":"));
-                gridArray.add(new Visografema("."));
-                gridArray.add(new Visografema(","));
-                gridArray.add(new Visografema("?"));
-                gridArray.add(new Visografema("!"));
-                gridArray.add(new Visografema("Ý"));
-                gridArray.add(new Visografema("ý"));
-                gridArray.add(new Visografema("("));
-                gridArray.add(new Visografema(")"));
-                break;
-
-            case Constantes.NUMEROS:
-                gridArray.add(new Visografema("0"));
-                gridArray.add(new Visografema("1"));
-                gridArray.add(new Visografema("2"));
-                gridArray.add(new Visografema("3"));
-                gridArray.add(new Visografema("4"));
-                gridArray.add(new Visografema("5"));
-                gridArray.add(new Visografema("6"));
-                gridArray.add(new Visografema("7"));
-                gridArray.add(new Visografema("8"));
-                gridArray.add(new Visografema("9"));
-                break;
-
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            callback = (CallbackFragmentToActivity) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " precisa implementar a interface CallbackTelaFragmentTradutor");
         }
     }
 }

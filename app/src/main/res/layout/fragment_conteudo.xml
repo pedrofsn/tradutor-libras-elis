@@ -50,22 +50,22 @@
             android:src="@drawable/ic_traduzir" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutAreaInput"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editTextPtBr"
+        <LinearLayout
+            android:id="@+id/linearLayoutAreaInput"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:hint="Insira o termo" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/editTextPtBr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:hint="Insira o termo" />
 
             <TextView
                 android:id="@+id/textViewElis"
@@ -73,8 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:visibility="gone" />
-        </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </LinearLayout>

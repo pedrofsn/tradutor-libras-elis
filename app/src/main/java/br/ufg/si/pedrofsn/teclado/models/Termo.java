@@ -1,6 +1,6 @@
 package br.ufg.si.pedrofsn.teclado.models;
 
-import br.ufg.si.pedrofsn.teclado.TipoLingua;
+import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 
 public class Termo {
 

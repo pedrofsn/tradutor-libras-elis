@@ -68,7 +68,6 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
 
     static class ViewHolder {
         Button buttonTecla;
-
     }
 
 }

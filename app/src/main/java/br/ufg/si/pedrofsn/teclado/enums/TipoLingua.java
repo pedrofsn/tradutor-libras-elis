@@ -1,4 +1,4 @@
-package br.ufg.si.pedrofsn.teclado;
+package br.ufg.si.pedrofsn.teclado.enums;
 
 /**
  * Created by pedrofsn on 28/09/2014.

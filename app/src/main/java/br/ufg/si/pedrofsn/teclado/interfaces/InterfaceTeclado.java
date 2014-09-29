@@ -1,4 +1,4 @@
-package br.ufg.si.pedrofsn.teclado;
+package br.ufg.si.pedrofsn.teclado.interfaces;
 
 import android.widget.Button;
 

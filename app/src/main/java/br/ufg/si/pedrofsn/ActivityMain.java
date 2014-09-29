@@ -27,19 +27,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import br.ufg.si.pedrofsn.teclado.FragmentElisKeyboard;
-import br.ufg.si.pedrofsn.teclado.fragments.FragmentTradutor;
-import br.ufg.si.pedrofsn.teclado.interfaces.CallbackTelaFragmentTradutor;
+import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
+import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
+import br.ufg.si.pedrofsn.teclado.fragments.FragmentTelaTradutor;
+import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
-public class ActivityMain extends FragmentActivity implements CallbackTelaFragmentTradutor, IElisKeyboard {
+public class ActivityMain extends FragmentActivity implements CallbackFragmentToActivity, IElisKeyboard {
 
+    private FragmentElisKeyboard FragmentElisKeyboard;
+    private FragmentTelaTradutor fragmentTelaTradutor;
     private FrameLayout frameLayoutKeyboardElis;
     private FrameLayout frameLayoutTelaTradutor;
     private TextView textViewElis;
-    private CalculoTamanhoTela calculoTamanhoTela;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,21 +51,18 @@ public class ActivityMain extends FragmentActivity implements CallbackTelaFragme
         frameLayoutTelaTradutor = (FrameLayout) findViewById(R.id.frameLayoutTelaTradutor);
         frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
 
+        fragmentTelaTradutor = new FragmentTelaTradutor();
+        FragmentElisKeyboard = new FragmentElisKeyboard();
+
         // Inicia com o keyboard-elis fechado
         frameLayoutKeyboardElis.setVisibility(View.GONE);
 
-        calculoTamanhoTela = new CalculoTamanhoTela(this);
-
-        Navegacao.showFragment(new FragmentElisKeyboard(), getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
-        Navegacao.showFragment(new FragmentTradutor(), getSupportFragmentManager(), FragmentTradutor.TAG, R.id.frameLayoutTelaTradutor);
+        Navegacao.showFragmentInicial(FragmentElisKeyboard, getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
+        Navegacao.showFragmentInicial(fragmentTelaTradutor, getSupportFragmentManager(), FragmentTelaTradutor.TAG, R.id.frameLayoutTelaTradutor);
     }
 
     public FrameLayout getFrameLayoutKeyboardElis() {
         return frameLayoutKeyboardElis;
-    }
-
-    public CalculoTamanhoTela getCalculoTamanhoTela() {
-        return calculoTamanhoTela;
     }
 
     @Override
@@ -103,5 +103,17 @@ public class ActivityMain extends FragmentActivity implements CallbackTelaFragme
     @Override
     public void getTextViewElis(TextView v) {
         textViewElis = (TextView) v;
+    }
+
+    @Override
+    public void botaoPressionado(TipoBotaoEspecial tipoBotaoEspecial) {
+        Toast.makeText(this, "Você pressionou o botão " + tipoBotaoEspecial.name().toString(), Toast.LENGTH_SHORT).show();
+//TODO = TERMINAR OS BOTÕES ESPECIAIS
+        if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
+        } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
+            textViewElis.setText(textViewElis.getText().toString() + " ");
+        } else {
+
+        }
     }
 }

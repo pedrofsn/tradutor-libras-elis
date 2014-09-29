@@ -21,16 +21,14 @@ import br.ufg.si.pedrofsn.ActivityMain;
 import br.ufg.si.pedrofsn.AsyncTaskPOST;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils;
-import br.ufg.si.pedrofsn.teclado.TipoLingua;
-import br.ufg.si.pedrofsn.teclado.interfaces.CallbackTelaFragmentTradutor;
-import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
+import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
+import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
-import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 /**
  * Created by pedrofsn on 29/09/2014.
  */
-public class FragmentTradutor extends Fragment implements AsyncTaskPOST.InterfaceAsyncTaskPostCallback, View.OnClickListener {
+public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.InterfaceAsyncTaskPostCallback, View.OnClickListener {
 
     public final static String TAG = "FragmentTradutor";
 
@@ -43,7 +41,7 @@ public class FragmentTradutor extends Fragment implements AsyncTaskPOST.Interfac
     private EditText editTextPtBr;
     private TextView textViewElis;
 
-    private CallbackTelaFragmentTradutor callback;
+    private CallbackFragmentToActivity callback;
 
     private Animation animationRotacionar;
 
@@ -72,8 +70,6 @@ public class FragmentTradutor extends Fragment implements AsyncTaskPOST.Interfac
 
         // Carrega animação
         animationRotacionar = AnimationUtils.loadAnimation(getActivity(), R.anim.rotacionar);
-
-        editTextPtBr.setMaxHeight((int) (((ActivityMain) getActivity()).getCalculoTamanhoTela().getHeightScreen() * 0.5));
 
         termo = new Termo(tipoLingua);
 
@@ -153,10 +149,9 @@ public class FragmentTradutor extends Fragment implements AsyncTaskPOST.Interfac
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            callback = (CallbackTelaFragmentTradutor) activity;
+            callback = (CallbackFragmentToActivity) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+            throw new ClassCastException(activity.toString() + " precisa implementar a interface CallbackTelaFragmentTradutor");
         }
     }
 }
