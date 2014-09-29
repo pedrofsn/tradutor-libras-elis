@@ -38,14 +38,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.ufg.si.pedrofsn.AsyncTaskPOST.InterfaceAsyncTaskPostCallback;
-import br.ufg.si.pedrofsn.model.ELiS;
 import br.ufg.si.pedrofsn.teclado.FragmentElisKeyboard;
+import br.ufg.si.pedrofsn.teclado.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
+import br.ufg.si.pedrofsn.teclado.models.Termo;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class ActivityMain extends FragmentActivity implements InterfaceAsyncTaskPostCallback, IElisKeyboard, OnClickListener {
 
-    private int LINGUAGEM_ATUAL = 0;
+    private TipoLingua tipoLingua;
 
     private TextView textViewDe;
     private ImageView imageViewTrocaLinguagem;
@@ -55,11 +56,9 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
     private EditText editTextPtBr;
     private TextView textViewElis;
 
-    private String htmlTextViewElis;
-
     private Animation animationRotacionar;
 
-    private ELiS tradutorDeTermosBaseadoEmElis;
+    private Termo termo;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +72,8 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
         editTextPtBr = (EditText) findViewById(R.id.editTextPtBr);
         textViewElis = (TextView) findViewById(R.id.textViewElis);
 
+        tipoLingua = TipoLingua.PTBR;
+
         // Carrega animação
         animationRotacionar = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotacionar);
 
@@ -83,7 +84,9 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
         int maxHeight = (int) (calculoTamanhoTela.getHeightScreen() * 0.5);
         editTextPtBr.setMaxHeight(maxHeight);
 
-        tradutorDeTermosBaseadoEmElis = new ELiS();
+        termo = new Termo(tipoLingua);
+
+        setValoresNosTextViewsDeTraducao();
 
         imageViewTrocaLinguagem.setOnClickListener(this);
         imageViewTraduzir.setOnClickListener(this);
@@ -113,11 +116,10 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
         switch (v.getId()) {
             case R.id.imageViewTraduzir:
 
-                tradutorDeTermosBaseadoEmElis.setDe(getLinguagem(1));
-                tradutorDeTermosBaseadoEmElis.setPara(getLinguagem(0));
-                tradutorDeTermosBaseadoEmElis.setTermo(getTermoInseridoPeloUsuario());
+                termo.setTipoLingua(tipoLingua);
+                termo.setTermo(getTermoInseridoPeloUsuario());
 
-                AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, tradutorDeTermosBaseadoEmElis);
+                AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, termo);
                 httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
                 break;
 
@@ -129,36 +131,35 @@ public class ActivityMain extends FragmentActivity implements InterfaceAsyncTask
 
     private void chavearLinguagem() {
         imageViewTrocaLinguagem.startAnimation(animationRotacionar);
-        if (textViewDe.getText().toString().equalsIgnoreCase(getString(R.string.portugues))) {
-            textViewDe.setText(getString(R.string.elis));
-            textViewPara.setText(getString(R.string.portugues));
+        tipoLingua = tipoLingua.alterarLingua();
+        if (tipoLingua.isElis()) {
             textViewElis.setVisibility(View.VISIBLE);
             editTextPtBr.setVisibility(View.GONE);
             frameLayoutKeyboardElis.setVisibility(View.VISIBLE);
-            LINGUAGEM_ATUAL = 1;
+            tipoLingua = TipoLingua.ELIS;
         } else {
-            textViewDe.setText(getString(R.string.portugues));
-            textViewPara.setText(getString(R.string.elis));
             textViewElis.setVisibility(View.GONE);
             editTextPtBr.setVisibility(View.VISIBLE);
             frameLayoutKeyboardElis.setVisibility(View.GONE);
-            LINGUAGEM_ATUAL = 0;
+            tipoLingua = TipoLingua.PTBR;
         }
 
+        setValoresNosTextViewsDeTraducao();
     }
 
-    private String getLinguagem(int origemOuDestino) {
-        return LINGUAGEM_ATUAL == origemOuDestino ? "elis" : "pt-br";
+    private void setValoresNosTextViewsDeTraducao() {
+        termo.setTipoLingua(tipoLingua);
+        textViewDe.setText(termo.getTraduzirDe());
+        textViewPara.setText(termo.getTraduzirPara());
     }
 
     private String getTermoInseridoPeloUsuario() {
-        return LINGUAGEM_ATUAL == 1 ? textViewElis.getText().toString() : editTextPtBr.getText().toString();
+        return tipoLingua.isElis() ? textViewElis.getText().toString() : editTextPtBr.getText().toString();
     }
 
     @Override
     public void getVisografemaClicado(Visografema visografema) {
-        htmlTextViewElis += textViewElis.getText().toString() + visografema.getValorElis().toString();
-        textViewElis.setText(htmlTextViewElis);
+        textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis());
     }
 
     @Override

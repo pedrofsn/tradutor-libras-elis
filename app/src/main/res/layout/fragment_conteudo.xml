@@ -3,26 +3,25 @@
     android:id="@+id/linearLayoutConteudo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearLayoutBlocoDeSelecaoDeLinguagens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewDe"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/portugues" />
+                android:gravity="center" />
 
             <ImageView
                 android:id="@+id/imageViewTrocaLinguagem"
@@ -36,8 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/elis" />
+                android:gravity="center" />
         </LinearLayout>
 
         <ImageView
@@ -56,7 +54,7 @@
         android:id="@+id/linearLayoutAreaInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/editTextPtBr"
@@ -65,12 +63,18 @@
             android:layout_margin="5dp"
             android:hint="Insira o termo" />
 
-        <TextView
-            android:id="@+id/textViewElis"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:visibility="gone" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewElis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:visibility="gone" />
+        </ScrollView>
+
     </LinearLayout>
 
 </LinearLayout>

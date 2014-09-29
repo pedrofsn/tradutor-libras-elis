@@ -14,15 +14,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import br.ufg.si.pedrofsn.model.ELiS;
+import br.ufg.si.pedrofsn.teclado.models.Termo;
 
 public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
     private InterfaceAsyncTaskPostCallback callback;
-    private ELiS elis;
+    private Termo termo;
 
-    public AsyncTaskPOST(InterfaceAsyncTaskPostCallback callback, ELiS elis) {
-        this.elis = elis;
+    public AsyncTaskPOST(InterfaceAsyncTaskPostCallback callback, Termo termo) {
+        this.termo = termo;
         this.callback = callback;
     }
 
@@ -48,9 +48,9 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
             String jsonEmString = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("de", elis.getDe());
-            jsonObject.accumulate("para", elis.getPara());
-            jsonObject.accumulate("termo", elis.getTermo());
+            jsonObject.accumulate("de", termo.getTraduzirDe());
+            jsonObject.accumulate("para", termo.getTraduzirPara());
+            jsonObject.accumulate("termo", termo.getTermo());
 
             jsonEmString = jsonObject.toString();
 
