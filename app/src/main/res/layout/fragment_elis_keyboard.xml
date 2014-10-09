@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayoutBotoesAuxiliares"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <android.support.v4.view.PagerTitleStrip
                 android:id="@+id/pager_title_strip"
@@ -32,7 +32,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/buttonNumeros"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="01" />
 
         <Button
             android:id="@+id/buttonSobrescrito"
@@ -47,20 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text=" " />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=".!?"
-            android:visibility="gone" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="01"
-            android:visibility="gone" />
+        />
 
         <Button
             android:id="@+id/buttonSublinhado"
@@ -68,6 +63,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="_" />
+
+        <Button
+            android:id="@+id/buttonPontuacao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=".!?" />
     </LinearLayout>
 
 </RelativeLayout>

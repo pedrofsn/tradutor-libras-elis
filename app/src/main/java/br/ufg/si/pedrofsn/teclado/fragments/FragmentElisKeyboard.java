@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.ufg.si.pedrofsn.R;
-import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
+import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 
 public class FragmentElisKeyboard extends Fragment implements OnClickListener {
@@ -24,6 +24,8 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     private Button buttonSobrescrito;
     private Button buttonEspaco;
     private Button buttonSublinhado;
+    private Button buttonPontuacao;
+    private Button buttonNumeros;
 
     private CallbackFragmentToActivity callback;
 
@@ -34,6 +36,8 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
         buttonSobrescrito = (Button) rootView.findViewById(R.id.buttonSobrescrito);
         buttonEspaco = (Button) rootView.findViewById(R.id.buttonEspaco);
         buttonSublinhado = (Button) rootView.findViewById(R.id.buttonSublinhado);
+        buttonPontuacao = (Button) rootView.findViewById(R.id.buttonPontuacao);
+        buttonNumeros = (Button) rootView.findViewById(R.id.buttonNumeros);
         return rootView;
     }
 
@@ -45,6 +49,8 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
         buttonSobrescrito.setOnClickListener(this);
         buttonEspaco.setOnClickListener(this);
         buttonSublinhado.setOnClickListener(this);
+        buttonPontuacao.setOnClickListener(this);
+        buttonNumeros.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +64,12 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
                 break;
             case R.id.buttonSublinhado:
                 callback.botaoPressionado(TipoBotaoEspecial.SUBLINHADO);
+                break;
+            case R.id.buttonPontuacao:
+                callback.botaoPressionado(TipoBotaoEspecial.PONTUACAO);
+                break;
+            case R.id.buttonNumeros:
+                callback.botaoPressionado(TipoBotaoEspecial.NUMEROS);
                 break;
         }
     }

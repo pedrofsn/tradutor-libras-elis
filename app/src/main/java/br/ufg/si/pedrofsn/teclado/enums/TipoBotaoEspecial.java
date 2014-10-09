@@ -6,7 +6,9 @@ package br.ufg.si.pedrofsn.teclado.enums;
 public enum TipoBotaoEspecial {
     SOBRESCRITO(0),
     ESPACO(1),
-    SUBLINHADO(2);
+    SUBLINHADO(2),
+    NUMEROS(3),
+    PONTUACAO(4);
 
     private int valor;
 
@@ -16,15 +18,21 @@ public enum TipoBotaoEspecial {
 
     private TipoBotaoEspecial getTipoBotao() {
         switch (valor) {
-            case 0: {
+            case 0:
                 return SOBRESCRITO;
-            }
-            case 1: {
+
+            case 1:
                 return ESPACO;
-            }
-            default: {
+
+            case 2:
                 return SUBLINHADO;
-            }
+
+            case 3:
+                return NUMEROS;
+
+            default:
+                return PONTUACAO;
+
         }
     }
 }

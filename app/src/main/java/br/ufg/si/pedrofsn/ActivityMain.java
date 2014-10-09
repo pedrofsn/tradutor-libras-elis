@@ -109,11 +109,15 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     @Override
     public void botaoPressionado(TipoBotaoEspecial tipoBotaoEspecial) {
         Toast.makeText(this, "Você pressionou o botão " + tipoBotaoEspecial.name().toString(), Toast.LENGTH_SHORT).show();
-//TODO = TERMINAR OS BOTÕES ESPECIAIS
+
+        //TODO = TERMINAR OS BOTÕES ESPECIAIS
         if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
+
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
             textViewElis.setText(textViewElis.getText().toString() + " ");
-        } else {
+        } else if (tipoBotaoEspecial == TipoBotaoEspecial.PONTUACAO) {
+
+        } else if (tipoBotaoEspecial == TipoBotaoEspecial.NUMEROS) {
 
         }
     }
