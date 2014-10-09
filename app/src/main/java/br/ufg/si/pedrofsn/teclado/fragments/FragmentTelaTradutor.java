@@ -121,6 +121,7 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
         tipoLingua = tipoLingua.alterarLingua();
         setValoresNosTextViewsDeTraducao();
         alterarVisibilidade(((ActivityMain) getActivity()).getFrameLayoutKeyboardElis(), editTextPtBr, textViewElis);
+        Utils.ocultarTecladoAndroid(getActivity(), editTextPtBr);
     }
 
     private void setValoresNosTextViewsDeTraducao() {
