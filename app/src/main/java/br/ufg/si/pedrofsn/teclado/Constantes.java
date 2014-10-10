@@ -7,4 +7,6 @@ public class Constantes {
     public final static int MOVIMENTOS = 3;
     public final static int PONTUACAO = 4;
     public final static int NUMEROS = 5;
+    public static boolean isSublinhadoPressionado = false;
+    public static boolean isSobrescritoPressionado = false;
 }

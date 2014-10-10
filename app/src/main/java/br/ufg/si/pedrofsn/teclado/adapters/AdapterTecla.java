@@ -50,13 +50,12 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
         }
 
         final Visografema visografemaAtual = data.get(position);
-//		holder.buttonTecla.setText(Html.fromHtml(visografemaAtual.getValorElis()));
         holder.buttonTecla.setText(visografemaAtual.getValorElis());
         holder.buttonTecla.setContentDescription(visografemaAtual.getValorElis());
         holder.buttonTecla.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.getVisografemaClicado(visografemaAtual);
+                callback.getVisografemaClicado(new Visografema(visografemaAtual.getValorElis()));
             }
         });
 

@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.UUID;
+
 public class Utils {
 
     public static boolean isConectado(Context context) {
@@ -38,4 +40,12 @@ public class Utils {
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
+    public static int generateUniqueId() {
+        UUID idOne = UUID.randomUUID();
+        String str = "" + idOne;
+        int uid = str.hashCode();
+        String filterStr = "" + uid;
+        str = filterStr.replaceAll("-", "");
+        return Integer.parseInt(str);
+    }
 }

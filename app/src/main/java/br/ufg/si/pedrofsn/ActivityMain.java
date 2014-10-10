@@ -29,7 +29,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.ufg.si.pedrofsn.Utils.Navegacao;
+import br.ufg.si.pedrofsn.Utils.Utils;
+import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentTelaTradutor;
@@ -44,6 +49,7 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     private FrameLayout frameLayoutKeyboardElis;
     private FrameLayout frameLayoutTelaTradutor;
     private TextView textViewElis;
+    private List<Visografema> listaDeVisografemasPressionados = new ArrayList<Visografema>();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +74,24 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
 
     @Override
     public void getVisografemaClicado(Visografema visografema) {
-        textViewElis.setText(textViewElis.getText().toString() + visografema.getValorElis());
+
+        if (Constantes.isSobrescritoPressionado) {
+            visografema.setValorElis("<sup>" + visografema.getValorElis() + "</sup>");
+        } else if (Constantes.isSublinhadoPressionado) {
+            visografema.setValorElis("<u>" + visografema.getValorElis() + "</u>");
+        }
+
+        listaDeVisografemasPressionados.add(visografema);
+
+        String conteudoDigitado = "";
+        for (Visografema v : listaDeVisografemasPressionados) {
+            conteudoDigitado += v.getValorElis();
+        }
+
+        textViewElis.setText(Html.fromHtml("<head></head><body>" + conteudoDigitado + "</body>"));
+
+        Constantes.isSobrescritoPressionado = false;
+        Constantes.isSublinhadoPressionado = false;
     }
 
     @Override
@@ -112,13 +135,15 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
 
         //TODO = TERMINAR OS BOTÕES ESPECIAIS
         if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
-
+            Constantes.isSobrescritoPressionado = true;
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
-            textViewElis.setText(textViewElis.getText().toString() + " ");
+            textViewElis.setText(textViewElis.getText().toString() + "&nbsp;");
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.PONTUACAO) {
 
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.NUMEROS) {
 
+        } else if (tipoBotaoEspecial == TipoBotaoEspecial.SUBLINHADO) {
+            Constantes.isSublinhadoPressionado = true;
         }
     }
 }
