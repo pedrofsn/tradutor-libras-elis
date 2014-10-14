@@ -26,6 +26,7 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     private Button buttonSublinhado;
     private Button buttonPontuacao;
     private Button buttonNumeros;
+    private Button buttonBackspace;
 
     private CallbackFragmentToActivity callback;
 
@@ -38,6 +39,7 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
         buttonSublinhado = (Button) rootView.findViewById(R.id.buttonSublinhado);
         buttonPontuacao = (Button) rootView.findViewById(R.id.buttonPontuacao);
         buttonNumeros = (Button) rootView.findViewById(R.id.buttonNumeros);
+        buttonBackspace = (Button) rootView.findViewById(R.id.buttonBackspace);
         return rootView;
     }
 
@@ -51,6 +53,7 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
         buttonSublinhado.setOnClickListener(this);
         buttonPontuacao.setOnClickListener(this);
         buttonNumeros.setOnClickListener(this);
+        buttonBackspace.setOnClickListener(this);
     }
 
     @Override
@@ -70,6 +73,9 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
                 break;
             case R.id.buttonNumeros:
                 callback.botaoPressionado(TipoBotaoEspecial.NUMEROS);
+                break;
+            case R.id.buttonBackspace:
+                callback.botaoPressionado(TipoBotaoEspecial.BACKSPACE);
                 break;
         }
     }

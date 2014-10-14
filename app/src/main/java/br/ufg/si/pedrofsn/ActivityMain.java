@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufg.si.pedrofsn.Utils.Navegacao;
-import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
@@ -83,6 +82,10 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
 
         listaDeVisografemasPressionados.add(visografema);
 
+        renderizarElis();
+    }
+
+    private void renderizarElis() {
         String conteudoDigitado = "";
         for (Visografema v : listaDeVisografemasPressionados) {
             conteudoDigitado += v.getValorElis();
@@ -144,6 +147,11 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
 
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.SUBLINHADO) {
             Constantes.isSublinhadoPressionado = true;
+        } else if (tipoBotaoEspecial == TipoBotaoEspecial.BACKSPACE) {
+            if (listaDeVisografemasPressionados != null && listaDeVisografemasPressionados.size() >= 1) {
+                listaDeVisografemasPressionados.remove(listaDeVisografemasPressionados.size() - 1);
+                renderizarElis();
+            }
         }
     }
 }

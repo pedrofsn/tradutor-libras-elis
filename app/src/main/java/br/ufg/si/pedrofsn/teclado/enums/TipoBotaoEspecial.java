@@ -8,7 +8,8 @@ public enum TipoBotaoEspecial {
     ESPACO(1),
     SUBLINHADO(2),
     NUMEROS(3),
-    PONTUACAO(4);
+    PONTUACAO(4),
+    BACKSPACE(5);
 
     private int valor;
 
@@ -30,8 +31,11 @@ public enum TipoBotaoEspecial {
             case 3:
                 return NUMEROS;
 
-            default:
+            case 4:
                 return PONTUACAO;
+
+            default:
+                return BACKSPACE;
 
         }
     }
