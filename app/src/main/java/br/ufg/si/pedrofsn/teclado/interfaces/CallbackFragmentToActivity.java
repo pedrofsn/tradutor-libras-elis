@@ -10,4 +10,5 @@ import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 public interface CallbackFragmentToActivity {
     public void getTextViewElis(TextView v);
     public void botaoPressionado(TipoBotaoEspecial tipoBotaoEspecial);
+    public void getResultadoTraducao(String resultado);
 }

@@ -1,6 +1,8 @@
 package br.ufg.si.pedrofsn.teclado.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +12,10 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.adapters.AdapterTecla;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
-import br.ufg.si.pedrofsn.R;
 
 public class FragmentConjuntoTeclas extends Fragment {
 
@@ -27,10 +29,6 @@ public class FragmentConjuntoTeclas extends Fragment {
 
         gridTeclas = new ArrayList<Visografema>();
 
-        Bundle args = getArguments();
-
-        setVisografemasNoGrupoAtual(args.getInt("numeroGrupoDeVisografemas"));
-
         gridView = (GridView) rootView.findViewById(R.id.gridViewTeclas);
 
         // desenvolver e montar o listener dos botões aqui
@@ -40,6 +38,13 @@ public class FragmentConjuntoTeclas extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setVisografemasNoGrupoAtual(getArguments().getInt("numeroGrupoDeVisografemas"));
+    }
+
 
     private void setVisografemasNoGrupoAtual(int numeroGrupoDeVisografemas) {
         // Sem este IF, o array continua a ser populado por novas "teclas", mas

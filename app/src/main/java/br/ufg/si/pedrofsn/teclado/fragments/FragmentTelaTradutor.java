@@ -19,7 +19,9 @@ import org.json.JSONObject;
 
 import br.ufg.si.pedrofsn.ActivityMain;
 import br.ufg.si.pedrofsn.AsyncTaskPOST;
+import br.ufg.si.pedrofsn.FragmentResultado;
 import br.ufg.si.pedrofsn.R;
+import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
@@ -105,9 +107,12 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
 
                 termo.setTipoLingua(tipoLingua);
                 termo.setTermo(getTermoInseridoPeloUsuario());
-
+/*
                 AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, termo);
                 httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
+*/
+
+                ((CallbackFragmentToActivity) getActivity()).getResultadoTraducao(null);
                 break;
 
             case R.id.imageViewTrocaLinguagem:

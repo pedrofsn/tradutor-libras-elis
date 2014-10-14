@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -43,8 +42,6 @@ import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class ActivityMain extends FragmentActivity implements CallbackFragmentToActivity, IElisKeyboard {
 
-    private FragmentElisKeyboard FragmentElisKeyboard;
-    private FragmentTelaTradutor fragmentTelaTradutor;
     private FrameLayout frameLayoutKeyboardElis;
     private FrameLayout frameLayoutTelaTradutor;
     private TextView textViewElis;
@@ -57,18 +54,40 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         frameLayoutTelaTradutor = (FrameLayout) findViewById(R.id.frameLayoutTelaTradutor);
         frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
 
-        fragmentTelaTradutor = new FragmentTelaTradutor();
-        FragmentElisKeyboard = new FragmentElisKeyboard();
 
         // Inicia com o keyboard-elis fechado
         frameLayoutKeyboardElis.setVisibility(View.GONE);
 
-        Navegacao.showFragmentInicial(FragmentElisKeyboard, getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
-        Navegacao.showFragmentInicial(fragmentTelaTradutor, getSupportFragmentManager(), FragmentTelaTradutor.TAG, R.id.frameLayoutTelaTradutor);
+        Navegacao.showFragmentInicial(new FragmentTelaTradutor(), getSupportFragmentManager(), FragmentTelaTradutor.TAG, R.id.frameLayoutTelaTradutor);
+        Navegacao.showFragmentInicial(new FragmentElisKeyboard(), getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
     }
 
     public FrameLayout getFrameLayoutKeyboardElis() {
         return frameLayoutKeyboardElis;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sobre:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(Html.fromHtml("Este aplicativo está sendo desenvolvido por Pedro Francisco de Sousa Neto, graduando em Sistemas de Informação pela Universidade Federal de Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Orientador)</li> <br /> <li>-Profa. Dra. Mariângela Estelita Barros (Coorientadora)</li>")).setTitle(R.string.sobre).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -103,31 +122,6 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.sobre:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(Html.fromHtml("Este aplicativo está sendo desenvolvido por Pedro Francisco de Sousa Neto, graduando em Sistemas de Informação pela Universidade Federal de Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Orientador)</li> <br /> <li>-Profa. Dra. Mariângela Estelita Barros (Coorientadora)</li>")).setTitle(R.string.sobre).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     public void getTextViewElis(TextView v) {
         textViewElis = (TextView) v;
     }
@@ -153,5 +147,15 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
                 renderizarElis();
             }
         }
+    }
+
+    @Override
+    public void getResultadoTraducao(String resultado) {
+        Bundle bundle = new Bundle();
+        bundle.putString("resultado", null);
+        FragmentResultado fragmentResultado = new FragmentResultado();
+        fragmentResultado.setArguments(bundle);
+
+        Navegacao.replaceFragment(fragmentResultado, getSupportFragmentManager(), FragmentResultado.TAG, R.id.frameLayoutKeyboardElis);
     }
 }

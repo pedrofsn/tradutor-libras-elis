@@ -6,6 +6,27 @@ import android.support.v4.app.FragmentTransaction;
 
 public class Navegacao {
 
+    // SETAR FRAGMENTS INICIAS SEM ADICIONAR AO BACKSTACK - PILHA
+    public static void showFragmentInicial(Fragment frag, FragmentManager fm, String tag, int idLayout) {
+        if (fm.findFragmentByTag(tag) == null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(idLayout, frag, tag);
+            ft.commit();
+        }
+    }
+
+    public static void replaceFragment(Fragment frag, FragmentManager fm, String tag, int idLayout) {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(idLayout, frag, tag);
+        ft.commit();
+    }
+
+    public static void detachFragment(Fragment frag, FragmentManager fm) {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.detach(frag);
+        ft.commit();
+    }
+
     // METODO PARA EXIBIR FRAGMENT SEM DUPLICALO
     public static void showFragment(Fragment frag, FragmentManager fm, String tag, int idLayout) {
         if (fm.findFragmentByTag(tag) == null) {
@@ -15,16 +36,6 @@ public class Navegacao {
             ft.commit();
         } else {
             showFragment(fm, tag);
-        }
-    }
-
-    // SETAR FRAGMENTS INICIAS SEM ADICIONAR AO BACKSTACK - PILHA
-    public static void showFragmentInicial(Fragment frag, FragmentManager fm, String tag, int idLayout) {
-        if (fm.findFragmentByTag(tag) == null) {
-
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(idLayout, frag, tag);
-            ft.commit();
         }
     }
 
@@ -41,7 +52,7 @@ public class Navegacao {
     }
 
     // REMOVER UM FRAGMENTO
-    public static void removerFragment(FragmentManager fm, String tag) {
+    public static void removeFragment(FragmentManager fm, String tag) {
         fm.popBackStackImmediate(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 }
