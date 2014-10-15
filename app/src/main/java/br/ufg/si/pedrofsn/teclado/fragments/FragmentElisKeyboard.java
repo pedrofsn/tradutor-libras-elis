@@ -13,7 +13,7 @@ import android.widget.Button;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
 import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
-import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
+import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 
 public class FragmentElisKeyboard extends Fragment implements OnClickListener {
 
@@ -28,7 +28,7 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     private Button buttonNumeros;
     private Button buttonBackspace;
 
-    private CallbackFragmentToActivity callback;
+    private IElisKeyboard callback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,22 +60,24 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSobrescrito:
-                callback.botaoPressionado(TipoBotaoEspecial.SOBRESCRITO);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.SOBRESCRITO);
                 break;
             case R.id.buttonEspaco:
-                callback.botaoPressionado(TipoBotaoEspecial.ESPACO);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.ESPACO);
                 break;
             case R.id.buttonSublinhado:
-                callback.botaoPressionado(TipoBotaoEspecial.SUBLINHADO);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.SUBLINHADO);
                 break;
             case R.id.buttonPontuacao:
-                callback.botaoPressionado(TipoBotaoEspecial.PONTUACAO);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.PONTUACAO);
+                viewPager.setCurrentItem(4, true);
                 break;
             case R.id.buttonNumeros:
-                callback.botaoPressionado(TipoBotaoEspecial.NUMEROS);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.NUMEROS);
+                viewPager.setCurrentItem(5, true);
                 break;
             case R.id.buttonBackspace:
-                callback.botaoPressionado(TipoBotaoEspecial.BACKSPACE);
+                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.BACKSPACE);
                 break;
         }
     }
@@ -83,11 +85,8 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
         try {
-            callback = (CallbackFragmentToActivity) activity;
+            callback = (IElisKeyboard) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " precisa implementar a interface CallbackTelaFragmentTradutor");
         }

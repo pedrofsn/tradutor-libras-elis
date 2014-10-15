@@ -1,11 +1,13 @@
 package br.ufg.si.pedrofsn.teclado.models;
 
+import java.io.Serializable;
+
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 
-public class Termo {
+public class Termo implements Serializable {
 
     private TipoLingua tipoLingua;
-    private String termo;
+    private Object termo;
 
     public Termo(TipoLingua tipoLingua) {
         this.tipoLingua = tipoLingua;
@@ -24,14 +26,17 @@ public class Termo {
         this.tipoLingua = tipoLingua;
     }
 
-    public String getTermo() {
+    public Object getTermo() {
         return termo;
     }
 
-    public void setTermo(String termo) {
+    public void setTermo(Object termo) {
         this.termo = termo;
     }
 
+    public boolean isExibirResultadoEmElis() {
+        return getTipoLingua() == TipoLingua.ELIS;
+    }
 
     public String getTraduzirDe() {
         return tipoLingua == TipoLingua.ELIS ? "ELIS" : "PT-BR";

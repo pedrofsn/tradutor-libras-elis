@@ -50,31 +50,28 @@
             android:src="@drawable/ic_traduzir" />
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/linearLayoutAreaInput"
+    <LinearLayout
+        android:id="@+id/linearLayoutAreaInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextPtBr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:hint="Insira o termo" />
+
+
+        <TextView
+            android:id="@+id/textViewElis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editTextPtBr"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="Insira o termo" />
-
-            <TextView
-                android:id="@+id/textViewElis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:visibility="gone" />
-        </LinearLayout>
-    </ScrollView>
+            android:layout_margin="5dp"
+            android:visibility="gone" />
+    </LinearLayout>
 
 
 </LinearLayout>

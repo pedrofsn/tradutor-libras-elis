@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.UUID;
 
 public class Utils {
+    static Typeface fonteElis;
 
     public static boolean isConectado(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
@@ -21,17 +23,25 @@ public class Utils {
         return networkInfo != null && networkInfo.isConnected() ? true : false;
     }
 
-    public static void aplicarFonteElis(Context context, View view) {
-        if (context != null && view != null) {
-            Typeface fonteElis = Typeface.createFromAsset(context.getAssets(), "elis.ttf");
+    public static void aplicarFonteElis(final Context context, final View view) {
 
-            if (view instanceof TextView) {
-                ((TextView) view).setTypeface(fonteElis);
-            } else if (view instanceof EditText) {
-                ((EditText) view).setTypeface(fonteElis);
-            } else if (view instanceof Button) {
-                ((Button) view).setTypeface(fonteElis);
-            }
+        if (fonteElis == null)
+            fonteElis = Typeface.createFromAsset(context.getAssets(), "elis.ttf");
+
+        if (context != null && view != null) {
+            ((Activity) context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    if (view instanceof TextView) {
+                        ((TextView) view).setTypeface(fonteElis);
+                    } else if (view instanceof EditText) {
+                        ((EditText) view).setTypeface(fonteElis);
+                    } else if (view instanceof Button) {
+                        ((Button) view).setTypeface(fonteElis);
+                    }
+                }
+            });
         }
     }
 
@@ -47,5 +57,9 @@ public class Utils {
         String filterStr = "" + uid;
         str = filterStr.replaceAll("-", "");
         return Integer.parseInt(str);
+    }
+
+    public static void log(String texto) {
+        Log.e("app", ">>> " + texto);
     }
 }

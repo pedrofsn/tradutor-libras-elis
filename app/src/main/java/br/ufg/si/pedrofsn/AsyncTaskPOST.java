@@ -14,14 +14,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import br.ufg.si.pedrofsn.teclado.interfaces.IAsyncTask;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 
 public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
-    private InterfaceAsyncTaskPostCallback callback;
+    private IAsyncTask callback;
     private Termo termo;
 
-    public AsyncTaskPOST(InterfaceAsyncTaskPostCallback callback, Termo termo) {
+    public AsyncTaskPOST(IAsyncTask callback, Termo termo) {
         this.termo = termo;
         this.callback = callback;
     }
@@ -33,7 +34,7 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String retornoDoServidor) {
-        callback.postRealizado(retornoDoServidor);
+        callback.onAsyncTaskConcluida(retornoDoServidor);
     }
 
     private String post(String url) {
@@ -89,7 +90,4 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
     }
 
-    public interface InterfaceAsyncTaskPostCallback {
-        public void postRealizado(String retornoDoServidor);
-    }
 }

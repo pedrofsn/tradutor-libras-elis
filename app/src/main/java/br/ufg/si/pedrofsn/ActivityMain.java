@@ -26,18 +26,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.ufg.si.pedrofsn.Utils.Navegacao;
+import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
+import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
-import br.ufg.si.pedrofsn.teclado.fragments.FragmentTelaTradutor;
+import br.ufg.si.pedrofsn.teclado.fragments.FragmentTopoTradutor;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
+import br.ufg.si.pedrofsn.teclado.models.Termo;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
 public class ActivityMain extends FragmentActivity implements CallbackFragmentToActivity, IElisKeyboard {
@@ -46,6 +48,9 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     private FrameLayout frameLayoutTelaTradutor;
     private TextView textViewElis;
     private List<Visografema> listaDeVisografemasPressionados = new ArrayList<Visografema>();
+    private FragmentResultado fragmentResultado;
+
+    /////////////////////// ACTIVITY
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +59,11 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         frameLayoutTelaTradutor = (FrameLayout) findViewById(R.id.frameLayoutTelaTradutor);
         frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
 
+        // Inicia com o keyboard-elis invisível, se for com GONE, o getSupportFragmentManager() não vai conseguir pegar a referência depois, mesmo se der VISIBLE. Esta é uma solução paleativa.
+        frameLayoutKeyboardElis.setVisibility(View.INVISIBLE);
 
-        // Inicia com o keyboard-elis fechado
-        frameLayoutKeyboardElis.setVisibility(View.GONE);
-
-        Navegacao.showFragmentInicial(new FragmentTelaTradutor(), getSupportFragmentManager(), FragmentTelaTradutor.TAG, R.id.frameLayoutTelaTradutor);
+        Navegacao.showFragmentInicial(new FragmentTopoTradutor(), getSupportFragmentManager(), FragmentTopoTradutor.TAG, R.id.frameLayoutTelaTradutor);
         Navegacao.showFragmentInicial(new FragmentElisKeyboard(), getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
-    }
-
-    public FrameLayout getFrameLayoutKeyboardElis() {
-        return frameLayoutKeyboardElis;
     }
 
     @Override
@@ -90,9 +90,23 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         }
     }
 
-    @Override
-    public void getVisografemaClicado(Visografema visografema) {
+    /////////////////////// SOLUÇÕES DOS FRAGMENT
 
+    public FrameLayout getElisKeyboard() {
+        return frameLayoutKeyboardElis;
+    }
+
+    public List<Visografema> getListaVisografemasInputados() {
+        return listaDeVisografemasPressionados;
+    }
+
+    @Override
+    public void getTextViewElisNaActivity(TextView v) {
+        textViewElis = (TextView) v;
+    }
+
+    @Override
+    public void onBotaoVisografemaPressionado(Visografema visografema) {
         if (Constantes.isSobrescritoPressionado) {
             visografema.setValorElis("<sup>" + visografema.getValorElis() + "</sup>");
         } else if (Constantes.isSublinhadoPressionado) {
@@ -114,23 +128,14 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
 
         Constantes.isSobrescritoPressionado = false;
         Constantes.isSublinhadoPressionado = false;
+
+        Utils.aplicarFonteElis(this, textViewElis);
     }
 
-    @Override
-    public void setAcaoBotaoAdicional() {
-        // TODO Setar a ação dos botões adicionais (espaço, x² e _)
-    }
 
     @Override
-    public void getTextViewElis(TextView v) {
-        textViewElis = (TextView) v;
-    }
+    public void onBotaoEspecialPressionado(TipoBotaoEspecial tipoBotaoEspecial) {
 
-    @Override
-    public void botaoPressionado(TipoBotaoEspecial tipoBotaoEspecial) {
-        Toast.makeText(this, "Você pressionou o botão " + tipoBotaoEspecial.name().toString(), Toast.LENGTH_SHORT).show();
-
-        //TODO = TERMINAR OS BOTÕES ESPECIAIS
         if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
             Constantes.isSobrescritoPressionado = true;
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
@@ -150,12 +155,26 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     }
 
     @Override
-    public void getResultadoTraducao(String resultado) {
+    public void onBotaoTraduzirTermoPressionado(Termo termoResultado) {
+        if (termoResultado.getTipoLingua() == TipoLingua.PTBR) {
+            frameLayoutKeyboardElis.setVisibility(View.VISIBLE);
+        }
+
+        ocultarCardResultado();
+
         Bundle bundle = new Bundle();
-        bundle.putString("resultado", null);
-        FragmentResultado fragmentResultado = new FragmentResultado();
+        bundle.putSerializable("resultado", termoResultado);
+        fragmentResultado = new FragmentResultado();
         fragmentResultado.setArguments(bundle);
 
         Navegacao.replaceFragment(fragmentResultado, getSupportFragmentManager(), FragmentResultado.TAG, R.id.frameLayoutKeyboardElis);
+
+    }
+
+    public void ocultarCardResultado() {
+        // Permite traduzir outro termo sem ter que apertar o botão ok do card de resultado
+        if (fragmentResultado != null) {
+            Navegacao.detachFragment(fragmentResultado, getSupportFragmentManager());
+        }
     }
 }

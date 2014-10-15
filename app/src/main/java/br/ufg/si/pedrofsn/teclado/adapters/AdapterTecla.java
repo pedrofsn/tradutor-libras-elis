@@ -55,7 +55,7 @@ public class AdapterTecla extends ArrayAdapter<Visografema> {
         holder.buttonTecla.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.getVisografemaClicado(new Visografema(visografemaAtual.getValorElis()));
+                callback.onBotaoVisografemaPressionado(new Visografema(visografemaAtual.getValorElis()));
             }
         });
 

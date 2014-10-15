@@ -39,7 +39,7 @@
             android:id="@+id/buttonNumeros"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_weight="1"
             android:text="01" />
 
@@ -47,7 +47,7 @@
             android:id="@+id/buttonSobrescrito"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_weight="1"
             android:text="x²" />
 
@@ -55,13 +55,13 @@
             android:id="@+id/buttonEspaco"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_weight="3"
             android:text=" " />
         />
 
         <Button
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:id="@+id/buttonSublinhado"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
 
         <Button
             android:id="@+id/buttonPontuacao"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -79,7 +79,7 @@
         <Button
             android:id="@+id/buttonBackspace"
             android:layout_width="0dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="←" />

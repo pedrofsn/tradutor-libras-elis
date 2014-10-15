@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +20,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.ufg.si.pedrofsn.ActivityMain;
-import br.ufg.si.pedrofsn.AsyncTaskPOST;
-import br.ufg.si.pedrofsn.FragmentResultado;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
+import br.ufg.si.pedrofsn.teclado.interfaces.IAsyncTask;
+import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 
 /**
  * Created by pedrofsn on 29/09/2014.
  */
-public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.InterfaceAsyncTaskPostCallback, View.OnClickListener {
+public class FragmentTopoTradutor extends Fragment implements IAsyncTask, View.OnClickListener {
 
     public final static String TAG = "FragmentTradutor";
 
@@ -51,7 +53,7 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_conteudo, container, false);
+        return inflater.inflate(R.layout.fragment_topo_tradutor, container, false);
     }
 
     @Override
@@ -80,24 +82,23 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
         imageViewTrocaLinguagem.setOnClickListener(this);
         imageViewTraduzir.setOnClickListener(this);
 
-        callback.getTextViewElis(textViewElis);
+        // Habilita o scroll no textview
+        textViewElis.setMovementMethod(new ScrollingMovementMethod());
 
-        Utils.aplicarFonteElis(getActivity(), textViewElis);
-    }
+        // Faço com que o textview seja acessível no escopo da activity
+        callback.getTextViewElisNaActivity(textViewElis);
 
-    @Override
-    public void postRealizado(String retornoDoServidor) {
-        Toast.makeText(getActivity(), "Servidor retornou na activity: " + retornoDoServidor, Toast.LENGTH_LONG).show();
-
-        try {
-            JSONObject jsonObject = new JSONObject(retornoDoServidor);
-            retornoDoServidor = jsonObject.getString("termos");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Utils.aplicarFonteElis(getActivity(), editTextPtBr);
-        editTextPtBr.setText(retornoDoServidor);
+        // Botão enter do teclado, dispara pesquisa - quando se está traduzindo de pt-br para elis
+        editTextPtBr.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClick(imageViewTraduzir);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -106,13 +107,13 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
             case R.id.imageViewTraduzir:
 
                 termo.setTipoLingua(tipoLingua);
-                termo.setTermo(getTermoInseridoPeloUsuario());
+                termo.setTermo(getValorInseridoPeloUsuario());
 /*
                 AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, termo);
                 httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
 */
 
-                ((CallbackFragmentToActivity) getActivity()).getResultadoTraducao(null);
+                ((IElisKeyboard) getActivity()).onBotaoTraduzirTermoPressionado(termo);
                 break;
 
             case R.id.imageViewTrocaLinguagem:
@@ -125,8 +126,14 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
         imageViewTrocaLinguagem.startAnimation(animationRotacionar);
         tipoLingua = tipoLingua.alterarLingua();
         setValoresNosTextViewsDeTraducao();
-        alterarVisibilidade(((ActivityMain) getActivity()).getFrameLayoutKeyboardElis(), editTextPtBr, textViewElis);
+        alterarVisibilidadeDeViews(((ActivityMain) getActivity()).getElisKeyboard(), editTextPtBr, textViewElis);
         Utils.ocultarTecladoAndroid(getActivity(), editTextPtBr);
+        ((ActivityMain) getActivity()).ocultarCardResultado();
+
+        if (tipoLingua != null && tipoLingua == TipoLingua.ELIS) {
+            ((ActivityMain) getActivity()).getElisKeyboard().setVisibility(View.VISIBLE);
+            Navegacao.replaceFragment(new FragmentElisKeyboard(), getActivity().getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
+        }
     }
 
     private void setValoresNosTextViewsDeTraducao() {
@@ -135,7 +142,7 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
         textViewPara.setText(termo.getTraduzirPara());
     }
 
-    private void alterarVisibilidade(View... views) {
+    private void alterarVisibilidadeDeViews(View... views) {
         for (View v : views) {
             if (v.getVisibility() == View.VISIBLE)
                 v.setVisibility(View.GONE);
@@ -144,20 +151,34 @@ public class FragmentTelaTradutor extends Fragment implements AsyncTaskPOST.Inte
         }
     }
 
-    private String getTermoInseridoPeloUsuario() {
-        return tipoLingua.isElis() ? textViewElis.getText().toString() : editTextPtBr.getText().toString();
+    private Object getValorInseridoPeloUsuario() {
+        return tipoLingua.isElis() ? ((ActivityMain) getActivity()).getListaVisografemasInputados() : editTextPtBr.getText().toString();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
         try {
             callback = (CallbackFragmentToActivity) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " precisa implementar a interface CallbackTelaFragmentTradutor");
         }
+    }
+
+    ///////////// ASYNCTASK
+
+    @Override
+    public void onAsyncTaskConcluida(String retornoDoServidor) {
+        Toast.makeText(getActivity(), "Servidor retornou na activity: " + retornoDoServidor, Toast.LENGTH_LONG).show();
+
+        try {
+            JSONObject jsonObject = new JSONObject(retornoDoServidor);
+            retornoDoServidor = jsonObject.getString("termos");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Utils.aplicarFonteElis(getActivity(), editTextPtBr);
+        editTextPtBr.setText(retornoDoServidor);
     }
 }
