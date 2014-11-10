@@ -108,9 +108,11 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     @Override
     public void onBotaoVisografemaPressionado(Visografema visografema) {
         if (Constantes.isSobrescritoPressionado) {
-            visografema.setValorElis("<sup>" + visografema.getValorElis() + "</sup>");
+            visografema.setValorElis(visografema.getValorElis());
+            visografema.setSobrescrito(true);
         } else if (Constantes.isSublinhadoPressionado) {
-            visografema.setValorElis("<u>" + visografema.getValorElis() + "</u>");
+            visografema.setValorElis(visografema.getValorElis());
+            visografema.setSublinhado(true);
         }
 
         listaDeVisografemasPressionados.add(visografema);
@@ -121,7 +123,15 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     private void renderizarElis() {
         String conteudoDigitado = "";
         for (Visografema v : listaDeVisografemasPressionados) {
-            conteudoDigitado += v.getValorElis();
+            if (v.isSobrescrito() && v.isSublinhado() == false) {
+                conteudoDigitado += "<sup>" + v.getValorElis() + "</sup>";
+            } else if (v.isSublinhado() && v.isSobrescrito() == false) {
+                conteudoDigitado += "<s>" + v.getValorElis() + "</s>";
+            } else if (v.isSublinhado() && v.isSobrescrito()) {
+                conteudoDigitado += "<sup><s>" + v.getValorElis() + "</s></sup>";
+            } else {
+                conteudoDigitado += v.getValorElis();
+            }
         }
 
         textViewElis.setText(Html.fromHtml("<head></head><body>" + conteudoDigitado + "</body>"));

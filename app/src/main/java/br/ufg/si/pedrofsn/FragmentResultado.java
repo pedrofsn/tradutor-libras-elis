@@ -65,7 +65,7 @@ public class FragmentResultado extends Fragment implements View.OnClickListener 
                 }
             }
         }
-
+        /*
         //////////////// MOCK
 
         String mock = null;
@@ -96,11 +96,12 @@ public class FragmentResultado extends Fragment implements View.OnClickListener 
             // Se o termo inserido bater com o mock, aplicar o mock
             contentResultado = mock;
         }
+        */
 
         textViewResultado.setText(contentResultado);
 
         // Aplicar a fonte da ELiS, caso o resultado seja em ELiS
-        if (resultado.isExibirResultadoEmElis() == false && mock != null) {
+        if (resultado.isExibirResultadoEmElis() == false) {
             Utils.aplicarFonteElis(getActivity(), textViewResultado);
         }
 
