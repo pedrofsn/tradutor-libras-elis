@@ -14,7 +14,7 @@ public enum TipoLingua {
     }
 
     private TipoLingua getTipoLingua() {
-        if(valorLingua == 0) {
+        if (valorLingua == 0) {
             return TipoLingua.ELIS;
         } else {
             return TipoLingua.PTBR;

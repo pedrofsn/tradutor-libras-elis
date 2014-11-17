@@ -39,50 +39,50 @@
             android:id="@+id/buttonNumeros"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="14sp"
             android:layout_weight="1"
-            android:text="01" />
+            android:text="01"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonSobrescrito"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
             android:layout_weight="1"
-            android:text="x²" />
+            android:text="x²"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonEspaco"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
             android:layout_weight="3"
-            android:text=" " />
+            android:text=" "
+            android:textSize="14sp" />
         />
 
         <Button
-            android:textSize="14sp"
             android:id="@+id/buttonSublinhado"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="_" />
+            android:text="_"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonPontuacao"
-            android:textSize="14sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="!?" />
+            android:text="!?"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonBackspace"
             android:layout_width="0dp"
-            android:textSize="14sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="←" />
+            android:text="←"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>

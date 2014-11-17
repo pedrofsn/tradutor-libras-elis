@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentConjuntoTeclas;
-import br.ufg.si.pedrofsn.R;
 
 public class AdapterViewPager extends FragmentStatePagerAdapter {
 
