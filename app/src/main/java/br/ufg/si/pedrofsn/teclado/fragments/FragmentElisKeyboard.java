@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.ufg.si.pedrofsn.R;
+import br.ufg.si.pedrofsn.teclado.Constantes;
 import br.ufg.si.pedrofsn.teclado.adapters.AdapterViewPager;
-import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 
 public class FragmentElisKeyboard extends Fragment implements OnClickListener {
@@ -60,24 +60,22 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSobrescrito:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.SOBRESCRITO);
+                Constantes.isSobrescritoPressionado = true;
                 break;
             case R.id.buttonEspaco:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.ESPACO);
+                callback.onBotaoEspacoPressionado();
                 break;
             case R.id.buttonSublinhado:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.SUBLINHADO);
+                Constantes.isSublinhadoPressionado = true;
                 break;
             case R.id.buttonPontuacao:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.PONTUACAO);
                 viewPager.setCurrentItem(4, true);
                 break;
             case R.id.buttonNumeros:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.NUMEROS);
                 viewPager.setCurrentItem(5, true);
                 break;
             case R.id.buttonBackspace:
-                callback.onBotaoEspecialPressionado(TipoBotaoEspecial.BACKSPACE);
+                callback.onBotaoBackspacePressionado();
                 break;
         }
     }

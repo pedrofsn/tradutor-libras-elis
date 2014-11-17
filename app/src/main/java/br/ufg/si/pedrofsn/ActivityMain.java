@@ -33,7 +33,6 @@ import java.util.List;
 import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.Constantes;
-import br.ufg.si.pedrofsn.teclado.enums.TipoBotaoEspecial;
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.fragments.FragmentTopoTradutor;
@@ -142,25 +141,16 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         Utils.aplicarFonteElis(this, textViewElis);
     }
 
+    @Override
+    public void onBotaoEspacoPressionado() {
+        listaDeVisografemasPressionados.add(new Visografema(" "));
+    }
 
     @Override
-    public void onBotaoEspecialPressionado(TipoBotaoEspecial tipoBotaoEspecial) {
-
-        if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
-            Constantes.isSobrescritoPressionado = true;
-        } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
-            listaDeVisografemasPressionados.add(new Visografema(" "));
-        } else if (tipoBotaoEspecial == TipoBotaoEspecial.PONTUACAO) {
-
-        } else if (tipoBotaoEspecial == TipoBotaoEspecial.NUMEROS) {
-
-        } else if (tipoBotaoEspecial == TipoBotaoEspecial.SUBLINHADO) {
-            Constantes.isSublinhadoPressionado = true;
-        } else if (tipoBotaoEspecial == TipoBotaoEspecial.BACKSPACE) {
-            if (listaDeVisografemasPressionados != null && listaDeVisografemasPressionados.size() >= 1) {
-                listaDeVisografemasPressionados.remove(listaDeVisografemasPressionados.size() - 1);
-                renderizarElis();
-            }
+    public void onBotaoBackspacePressionado() {
+        if (listaDeVisografemasPressionados != null && listaDeVisografemasPressionados.size() > 0) {
+            listaDeVisografemasPressionados.remove(listaDeVisografemasPressionados.size() - 1);
+            renderizarElis();
         }
     }
 
