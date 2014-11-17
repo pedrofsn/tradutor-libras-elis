@@ -29,22 +29,14 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... urls) {
-        return post(urls[0]);
-    }
 
-    @Override
-    protected void onPostExecute(String retornoDoServidor) {
-        callback.onAsyncTaskConcluida(retornoDoServidor);
-    }
-
-    private String post(String url) {
         InputStream inputStream = null;
         String resultado = "";
         try {
 
             HttpClient httpclient = new DefaultHttpClient();
 
-            HttpPost httpPost = new HttpPost(url);
+            HttpPost httpPost = new HttpPost(urls[0]);
 
             String jsonEmString = "";
 
@@ -76,6 +68,11 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
         }
 
         return resultado;
+    }
+
+    @Override
+    protected void onPostExecute(String retornoDoServidor) {
+        callback.onAsyncTaskConcluida(retornoDoServidor);
     }
 
     private String converterInputStreamParaString(InputStream inputStream) throws IOException {
