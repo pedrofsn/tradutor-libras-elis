@@ -123,12 +123,12 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
     private void renderizarElis() {
         String conteudoDigitado = "";
         for (Visografema v : listaDeVisografemasPressionados) {
-            if (v.isSobrescrito() && v.isSublinhado() == false) {
-                conteudoDigitado += "<sup>" + v.getValorElis() + "</sup>";
-            } else if (v.isSublinhado() && v.isSobrescrito() == false) {
-                conteudoDigitado += "<s>" + v.getValorElis() + "</s>";
-            } else if (v.isSublinhado() && v.isSobrescrito()) {
+            if (v.isSublinhado() && v.isSobrescrito()) {
                 conteudoDigitado += "<sup><s>" + v.getValorElis() + "</s></sup>";
+            } else if (v.isSublinhado()) {
+                conteudoDigitado += "<s>" + v.getValorElis() + "</s>";
+            } else if (v.isSobrescrito()) {
+                conteudoDigitado += "<sup>" + v.getValorElis() + "</sup>";
             } else {
                 conteudoDigitado += v.getValorElis();
             }
@@ -149,7 +149,7 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         if (tipoBotaoEspecial == TipoBotaoEspecial.SOBRESCRITO) {
             Constantes.isSobrescritoPressionado = true;
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.ESPACO) {
-            textViewElis.setText(textViewElis.getText().toString() + "&nbsp;");
+            listaDeVisografemasPressionados.add(new Visografema(" "));
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.PONTUACAO) {
 
         } else if (tipoBotaoEspecial == TipoBotaoEspecial.NUMEROS) {
