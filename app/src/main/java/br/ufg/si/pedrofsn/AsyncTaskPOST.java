@@ -3,7 +3,6 @@ package br.ufg.si.pedrofsn;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -79,7 +78,6 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String retornoDoServidor) {
 
-        Toast.makeText(context, "Servidor retornou na activity: " + retornoDoServidor, Toast.LENGTH_LONG).show();
         Log.e(Constantes.LOG, "Retorno do servidor: " + retornoDoServidor);
 
         try {
