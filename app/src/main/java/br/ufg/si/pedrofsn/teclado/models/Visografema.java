@@ -1,6 +1,8 @@
 package br.ufg.si.pedrofsn.teclado.models;
 
-public class Visografema {
+import java.io.Serializable;
+
+public class Visografema implements Serializable {
 
     private String valorElis;
     private boolean sobrescrito;

@@ -46,7 +46,7 @@ public class FragmentElisKeyboard extends Fragment implements OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        adapterViewPager = new AdapterViewPager(getActivity(), getFragmentManager());
+        adapterViewPager = new AdapterViewPager(getActivity(), getChildFragmentManager());
         viewPager.setAdapter(adapterViewPager);
         buttonSobrescrito.setOnClickListener(this);
         buttonEspaco.setOnClickListener(this);
