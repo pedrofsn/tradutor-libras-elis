@@ -10,11 +10,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.UUID;
 
 import br.ufg.si.pedrofsn.R;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class Utils {
     static Typeface fonteElis;
@@ -26,7 +27,7 @@ public class Utils {
         if (networkInfo != null && networkInfo.isConnected()) {
             return true;
         } else {
-            Toast.makeText(context, context.getString(R.string.erro_conexao), Toast.LENGTH_SHORT).show();
+            Crouton.makeText((Activity) context, context.getString(R.string.erro_conexao), Style.ALERT).show();
             return false;
         }
     }

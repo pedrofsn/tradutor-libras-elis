@@ -17,7 +17,7 @@
     <string name="NUMEROS">NÚMEROS</string>
 
     <!-- MENSAGENS DE ALERTA -->
-    <string name="erro_conexao">Para traduzir, é necessário possuir conexão com a internet.</string>
+    <string name="erro_conexao">Você precisa estar conectado a internet!</string>
     <string name="ops_erro">Ocorreu um problema!</string>
 
 </resources>
