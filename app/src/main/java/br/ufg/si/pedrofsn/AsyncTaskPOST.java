@@ -1,12 +1,16 @@
 package br.ufg.si.pedrofsn;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -14,17 +18,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import br.ufg.si.pedrofsn.teclado.interfaces.IAsyncTask;
+import br.ufg.si.pedrofsn.teclado.Constantes;
+import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 
 public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
-    private IAsyncTask callback;
+    private Context context;
     private Termo termo;
 
-    public AsyncTaskPOST(IAsyncTask callback, Termo termo) {
+    public AsyncTaskPOST(Context context, Termo termo) {
+        this.context = context;
         this.termo = termo;
-        this.callback = callback;
     }
 
     @Override
@@ -41,11 +46,12 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
             String jsonEmString = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("de", termo.getTraduzirDe());
-            jsonObject.accumulate("para", termo.getTraduzirPara());
-            jsonObject.accumulate("termo", termo.getTermo());
+            jsonObject.accumulate("de", "pt-br");//termo.getTraduzirDe().toLowerCase());
+            jsonObject.accumulate("para", "ELiS");//termo.getTraduzirPara());
+            jsonObject.accumulate("termo", "casa");//termo.getTermo());
 
             jsonEmString = jsonObject.toString();
+            Log.e(Constantes.LOG, ">> " + jsonEmString);
 
             StringEntity stringEntity = new StringEntity(jsonEmString);
 
@@ -61,7 +67,7 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
             if (inputStream != null)
                 resultado = converterInputStreamParaString(inputStream);
             else
-                resultado = "Ocorreu um problema!";
+                resultado = context.getString(R.string.ops_erro);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +78,18 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String retornoDoServidor) {
-        callback.onAsyncTaskConcluida(retornoDoServidor);
+
+        Toast.makeText(context, "Servidor retornou na activity: " + retornoDoServidor, Toast.LENGTH_LONG).show();
+        Log.e(Constantes.LOG, "Retorno do servidor: " + retornoDoServidor);
+
+        try {
+            JSONObject jsonObject = new JSONObject(retornoDoServidor);
+            Log.e(Constantes.LOG, "Resultado: " + jsonObject.getString("termos"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ((IElisKeyboard) context).onBotaoTraduzirTermoPressionado(termo);
     }
 
     private String converterInputStreamParaString(InputStream inputStream) throws IOException {

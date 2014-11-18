@@ -1,6 +1,7 @@
 package br.ufg.si.pedrofsn.teclado;
 
 public class Constantes {
+    public final static String LOG = "teste";
     public final static int CONFIGURACAO_DE_DEDO = 0;
     public final static int ORIENTACAO_DE_PALMA = 1;
     public final static int PONTOS_DE_ARTICULACAO = 2;

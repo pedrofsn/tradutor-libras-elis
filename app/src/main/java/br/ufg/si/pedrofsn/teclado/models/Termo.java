@@ -39,10 +39,10 @@ public class Termo implements Serializable {
     }
 
     public String getTraduzirDe() {
-        return tipoLingua == TipoLingua.ELIS ? "ELIS" : "PT-BR";
+        return tipoLingua == TipoLingua.ELIS ? "ELiS" : "PT-BR";
     }
 
     public String getTraduzirPara() {
-        return tipoLingua != TipoLingua.ELIS ? "ELIS" : "PT-BR";
+        return tipoLingua != TipoLingua.ELIS ? "ELiS" : "PT-BR";
     }
 }

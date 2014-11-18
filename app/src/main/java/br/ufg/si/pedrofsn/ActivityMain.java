@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
 
-public class ActivityMain extends FragmentActivity implements CallbackFragmentToActivity, IElisKeyboard {
+public class ActivityMain extends ActionBarActivity implements CallbackFragmentToActivity, IElisKeyboard {
 
     private FrameLayout frameLayoutKeyboardElis;
     private FrameLayout frameLayoutTelaTradutor;
@@ -76,7 +77,7 @@ public class ActivityMain extends FragmentActivity implements CallbackFragmentTo
         switch (item.getItemId()) {
             case R.id.sobre:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(Html.fromHtml("Este aplicativo está sendo desenvolvido por Pedro Francisco de Sousa Neto, graduando em Sistemas de Informação pela Universidade Federal de Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Orientador)</li> <br /> <li>-Profa. Dra. Mariângela Estelita Barros (Coorientadora)</li>")).setTitle(R.string.sobre).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                builder.setMessage(Html.fromHtml(getString(R.string.dialog_sobre))).setTitle(R.string.sobre).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }

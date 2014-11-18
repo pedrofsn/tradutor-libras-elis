@@ -5,14 +5,16 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.UUID;
+
+import br.ufg.si.pedrofsn.R;
 
 public class Utils {
     static Typeface fonteElis;
@@ -20,7 +22,13 @@ public class Utils {
     public static boolean isConectado(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected() ? true : false;
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else {
+            Toast.makeText(context, context.getString(R.string.erro_conexao), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     public static void aplicarFonteElis(final Context context, final View view) {
@@ -57,9 +65,5 @@ public class Utils {
         String filterStr = "" + uid;
         str = filterStr.replaceAll("-", "");
         return Integer.parseInt(str);
-    }
-
-    public static void log(String texto) {
-        Log.e("app", ">>> " + texto);
     }
 }

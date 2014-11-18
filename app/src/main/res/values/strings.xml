@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- CONFIGURAÇÕES -->
     <string name="app_name">ELiS Mobile</string>
     <string name="sobre">Sobre</string>
-    <string name="teste">Teste</string>
 
     <!-- DIALOG -->
+    <string name="dialog_sobre"><![CDATA[Este aplicativo está sendo desenvolvido por Pedro Francisco de Sousa Neto, graduando em Sistemas de Informação pela Universidade Federal de Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Orientador)</li> <br /> <li>-Profa. Dra. Mariângela Estelita Barros (Coorientadora)</li>]]></string>
 
     <!-- GRUPOS DE VISOGRAFEMAS -->
     <string name="configuracao_de_dedo">CONFIGURAÇÃO DE DEDO</string>
@@ -14,5 +15,9 @@
     <string name="movimentos">MOVIMENTOS</string>
     <string name="PONTUACAO">PONTUAÇÃO</string>
     <string name="NUMEROS">NÚMEROS</string>
+
+    <!-- MENSAGENS DE ALERTA -->
+    <string name="erro_conexao">Para traduzir, é necessário possuir conexão com a internet.</string>
+    <string name="ops_erro">Ocorreu um problema!</string>
 
 </resources>

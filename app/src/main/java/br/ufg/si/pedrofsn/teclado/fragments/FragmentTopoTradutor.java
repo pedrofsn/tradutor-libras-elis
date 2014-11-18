@@ -14,25 +14,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import br.ufg.si.pedrofsn.ActivityMain;
+import br.ufg.si.pedrofsn.AsyncTaskPOST;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.Utils.Utils;
 import br.ufg.si.pedrofsn.teclado.enums.TipoLingua;
 import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
-import br.ufg.si.pedrofsn.teclado.interfaces.IAsyncTask;
-import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 
 /**
  * Created by pedrofsn on 29/09/2014.
  */
-public class FragmentTopoTradutor extends Fragment implements IAsyncTask, View.OnClickListener {
+public class FragmentTopoTradutor extends Fragment implements View.OnClickListener {
 
     public final static String TAG = "FragmentTradutor";
 
@@ -101,27 +96,6 @@ public class FragmentTopoTradutor extends Fragment implements IAsyncTask, View.O
         });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.imageViewTraduzir:
-
-                termo.setTipoLingua(tipoLingua);
-                termo.setTermo(getValorInseridoPeloUsuario());
-/*
-                AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(this, termo);
-                httpAsyncTask.execute("http://elis2.apiary-mock.com/search");
-*/
-
-                ((IElisKeyboard) getActivity()).onBotaoTraduzirTermoPressionado(termo);
-                break;
-
-            case R.id.imageViewTrocaLinguagem:
-                chavearLinguagem();
-                break;
-        }
-    }
-
     private void chavearLinguagem() {
         imageViewTrocaLinguagem.startAnimation(animationRotacionar);
         tipoLingua = tipoLingua.alterarLingua();
@@ -165,20 +139,25 @@ public class FragmentTopoTradutor extends Fragment implements IAsyncTask, View.O
         }
     }
 
-    ///////////// ASYNCTASK
-
     @Override
-    public void onAsyncTaskConcluida(String retornoDoServidor) {
-        Toast.makeText(getActivity(), "Servidor retornou na activity: " + retornoDoServidor, Toast.LENGTH_LONG).show();
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imageViewTraduzir:
 
-        try {
-            JSONObject jsonObject = new JSONObject(retornoDoServidor);
-            retornoDoServidor = jsonObject.getString("termos");
-        } catch (JSONException e) {
-            e.printStackTrace();
+                if (Utils.isConectado(getActivity())) {
+                    termo.setTipoLingua(tipoLingua);
+                    termo.setTermo(getValorInseridoPeloUsuario());
+
+                    AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(getActivity(), termo);
+                    httpAsyncTask.execute("http://private-cd7bb-elis2.apiary-mock.com/search");
+                }
+
+                break;
+
+            case R.id.imageViewTrocaLinguagem:
+                chavearLinguagem();
+                break;
         }
-
-        Utils.aplicarFonteElis(getActivity(), editTextPtBr);
-        editTextPtBr.setText(retornoDoServidor);
     }
+
 }
