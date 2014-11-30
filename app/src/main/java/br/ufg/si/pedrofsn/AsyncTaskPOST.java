@@ -45,9 +45,9 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
             String jsonEmString = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("de", "pt-br");//termo.getTraduzirDe().toLowerCase());
-            jsonObject.accumulate("para", "ELiS");//termo.getTraduzirPara());
-            jsonObject.accumulate("termo", "casa");//termo.getTermo());
+            jsonObject.accumulate("de", termo.getTraduzirDe().toLowerCase());
+            jsonObject.accumulate("para", termo.getTraduzirPara().toLowerCase());
+            jsonObject.accumulate("termo", ((String) termo.getTermo()).toLowerCase());
 
             jsonEmString = jsonObject.toString();
             Log.e(Constantes.LOG, ">> " + jsonEmString);

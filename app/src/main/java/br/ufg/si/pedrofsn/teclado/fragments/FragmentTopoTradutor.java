@@ -149,7 +149,7 @@ public class FragmentTopoTradutor extends Fragment implements View.OnClickListen
                     termo.setTermo(getValorInseridoPeloUsuario());
 
                     AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(getActivity(), termo);
-                    httpAsyncTask.execute("http://private-cd7bb-elis2.apiary-mock.com/search");
+                    httpAsyncTask.execute("http://private-657ad-pedrofsn.apiary-mock.com/notes");
                 }
 
                 break;
