@@ -61,7 +61,7 @@ module.exports = function(app) {
 	// Se for em portguês
 	if (req.params.caso == "0") {
 		Termo.find({
-		ptbr : req.params.termo;
+		ptbr : req.params.termo
 		}, function(err, termo) {
 			if (err)
 				res.send(err);
@@ -75,7 +75,7 @@ module.exports = function(app) {
 		});
 			} else {
 		Termo.find({
-		elis : req.params.termo;
+		elis : req.params.termo
 		}, function(err, termo) {
 			if (err)
 				res.send(err);
