@@ -15,11 +15,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.net.URL;
-
 import br.ufg.si.pedrofsn.ActivityMain;
 import br.ufg.si.pedrofsn.AsyncTaskPOST;
-import br.ufg.si.pedrofsn.Constantes;
+import br.ufg.si.pedrofsn.Url;
 import br.ufg.si.pedrofsn.R;
 import br.ufg.si.pedrofsn.Utils.Navegacao;
 import br.ufg.si.pedrofsn.Utils.Utils;
@@ -152,7 +150,7 @@ public class FragmentTopoTradutor extends Fragment implements View.OnClickListen
                     termo.setTermo(getValorInseridoPeloUsuario());
 
                     AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(getActivity(), termo);
-                    httpAsyncTask.execute(Constantes.URL);
+                    httpAsyncTask.execute(Url.URL);
                 }
 
                 break;
