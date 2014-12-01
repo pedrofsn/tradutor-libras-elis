@@ -57,11 +57,13 @@ module.exports = function(app) {
 
 	// search a termo
 	app.post('/api/termos/busca/:caso/:termo', function(req, res) {
+	res.send("Caso: " + req.params.caso);
 		Termo.find({
-			if (req.params.caso == "0")
-				ptbr : req.params.termo
-			else
-				elis : req.params.termo
+			if (req.params.caso == "0") {
+				ptbr : req.params.termo;
+			} else {
+				elis : req.params.termo;
+			}
 		}, function(err, termo) {
 			if (err)
 				res.send(err);
