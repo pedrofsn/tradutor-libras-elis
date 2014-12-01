@@ -9,6 +9,9 @@ public class Termo implements Serializable {
     private TipoLingua tipoLingua;
     private Object termo;
 
+    public Termo() {
+    }
+
     public Termo(TipoLingua tipoLingua) {
         this.tipoLingua = tipoLingua;
     }
