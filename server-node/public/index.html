@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Termo App</title>
+	<title>ELiS Mobile - Cadastro de Termos</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -26,23 +26,11 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
+		<!-- HEADER AND TERMO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Termo-aholic <span class="label label-info">{{ termos.length }}</span></h1>
-		</div>
-
-		<!-- TODO LIST -->
-		<div id="termo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-
-				<!-- LOOP OVER THE termos IN $scope.termos -->
-				<div class="checkbox" ng-repeat="termo in termos">
-					<label>
-						<input type="checkbox" ng-click="deleteTermo(termo._id)"> {{ termo.ptbr }} 
-					</label>
-				</div>
-
-			</div>
+			<h1>Cadastro de Termos da plataforma ELiS Mobile</h1>
+			</br>
+			<h3><span class="label label-info">{{ termos.length }}</span> termos cadastrados</h3>
 		</div>
 
 		<!-- FORM TO CREATE termos -->
@@ -56,15 +44,29 @@
 						<input type="text" class="form-control input-lg text-center" placeholder="Termo em ELiS" ng-model="formData.elis">
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW termos -->
+					<!-- createTermo() WILL CREATE NEW termos -->
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTermo()">Adicionar termo ao banco de dados</button>
 				</form>
 			</div>
 		</div>
 
+		<!-- TERMO LIST -->
+		<div id="termo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE termos IN $scope.termos -->
+				<div class="checkbox" ng-repeat="termo in termos">
+					<label>
+						<input type="checkbox" ng-click="deleteTermo(termo._id)"> {{ termo.ptbr }} - {{ termo.elis }} 
+					</label>
+				</div>
+
+			</div>
+		</div>
+
 		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-termo-app-with-node-and-angular">tutorial</a>.</p>
+			<p>Desenvolvido por <a href="http://wwww.pedrofsn.com.br">pedrofsn</a>.</p>
+			<p>Baseado neste <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-termo-app-with-node-and-angular">tutorial</a>.</p>
 		</div>
 
 	</div>
