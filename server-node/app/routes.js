@@ -22,7 +22,7 @@ module.exports = function(app) {
 
 		// create a termo, information comes from AJAX request from Angular
 		Termo.create({
-			ptbr : req.body.ptbr,
+			ptbr : req.body.ptbr.toLowerCase(),
 			elis : req.body.elis
 		}, function(err, termo) {
 			if (err)
@@ -56,9 +56,10 @@ module.exports = function(app) {
 	}); 
 
 	// search a termo
-	app.get('/api/termos/:caso/:termo', function (req, res) { 
-		if(req.params.caso == 0) {
-			Termo.find({ ptbr: req.params.termo }, function (err, termos) {
+	app.get('/api/termos/busca/:caso/:termo', function (req, res) { 
+		// 0 - ELiS | 1 - PTBR
+		if(req.params.caso == 1) {
+			Termo.find({ ptbr: (req.params.termo).toLowerCase() }, function (err, termos) {
         	if (err)
 				res.send(err) 
 
