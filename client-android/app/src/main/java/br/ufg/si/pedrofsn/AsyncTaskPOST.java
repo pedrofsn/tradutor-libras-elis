@@ -27,7 +27,8 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
     private Context context;
     private Termo termo;
 
-    public AsyncTaskPOST(Context context, Termo termo) {
+    public
+    AsyncTaskPOST(Context context, Termo termo) {
         this.context = context;
         this.termo = termo;
     }
@@ -41,15 +42,15 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
             HttpClient httpclient = new DefaultHttpClient();
 
-            //HttpPost httpPost = new HttpPost(urls[0]);
-            HttpGet httpPost = new HttpGet(urls[0]);
-/*
+            HttpPost httpPost = new HttpPost(urls[0]);
+            /* HttpGet httpPost = new HttpGet(urls[0]); */
+
             String jsonEmString = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("de", termo.getTraduzirDe().toLowerCase());
-            jsonObject.accumulate("para", termo.getTraduzirPara().toLowerCase());
-            jsonObject.accumulate("termo", ((String) termo.getTermo()).toLowerCase());
+            jsonObject.accumulate("caso", 0);//termo.getTraduzirDe().toLowerCase());
+            jsonObject.accumulate("termo", "teste");///termo.getTraduzirPara().toLowerCase());
+            //jsonObject.accumulate("termo", ((String) termo.getTermo()).toLowerCase());
 
             jsonEmString = jsonObject.toString();
             Log.e(Constantes.LOG, ">> " + jsonEmString);
@@ -60,10 +61,10 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
-*/
+/*
             HttpResponse httpResponse = httpclient.execute(httpPost);
-
             inputStream = httpResponse.getEntity().getContent();
+*/
 
             if (inputStream != null)
                 resultado = converterInputStreamParaString(inputStream);

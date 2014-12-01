@@ -55,6 +55,8 @@ public class ActivityMain extends ActionBarActivity implements CallbackFragmentT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        new AsyncTaskPOST(this, null).execute(Url.URL + "busca");
+
         frameLayoutTelaTradutor = (FrameLayout) findViewById(R.id.frameLayoutTelaTradutor);
         frameLayoutKeyboardElis = (FrameLayout) findViewById(R.id.frameLayoutKeyboardElis);
 
@@ -156,19 +158,20 @@ public class ActivityMain extends ActionBarActivity implements CallbackFragmentT
 
     @Override
     public void onBotaoTraduzirTermoPressionado(Termo termoResultado) {
-        if (termoResultado.getTipoLingua() == TipoLingua.PTBR) {
-            frameLayoutKeyboardElis.setVisibility(View.VISIBLE);
+        if (termoResultado != null) {
+            if (termoResultado.getTipoLingua() == TipoLingua.PTBR) {
+                frameLayoutKeyboardElis.setVisibility(View.VISIBLE);
+            }
+
+            ocultarCardResultado();
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("resultado", termoResultado);
+            fragmentResultado = new FragmentResultado();
+            fragmentResultado.setArguments(bundle);
+
+            Navegacao.replaceFragment(fragmentResultado, getSupportFragmentManager(), FragmentResultado.TAG, R.id.frameLayoutKeyboardElis);
         }
-
-        ocultarCardResultado();
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("resultado", termoResultado);
-        fragmentResultado = new FragmentResultado();
-        fragmentResultado.setArguments(bundle);
-
-        Navegacao.replaceFragment(fragmentResultado, getSupportFragmentManager(), FragmentResultado.TAG, R.id.frameLayoutKeyboardElis);
-
     }
 
     public void ocultarCardResultado() {
