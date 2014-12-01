@@ -57,13 +57,11 @@ module.exports = function(app) {
 
 	// search a termo
 	app.post('/api/termos/busca/:caso/:termo', function(req, res) {
-	res.send("Caso: " + req.params.caso);
+	
+	// Se for em portguês
+	if (req.params.caso == "0") {
 		Termo.find({
-			if (req.params.caso == "0") {
-				ptbr : req.params.termo;
-			} else {
-				elis : req.params.termo;
-			}
+		ptbr : req.params.termo;
 		}, function(err, termo) {
 			if (err)
 				res.send(err);
@@ -75,6 +73,22 @@ module.exports = function(app) {
 				res.json(termos);
 			});
 		});
+			} else {
+		Termo.find({
+		elis : req.params.termo;
+		}, function(err, termo) {
+			if (err)
+				res.send(err);
+
+			// get and return all the termos after you create another
+			Termo.find(function(err, termos) {
+				if (err)
+					res.send(err)
+				res.json(termos);
+			});
+		});
+			}
+		 
 	});
 
 	// application -------------------------------------------------------------
