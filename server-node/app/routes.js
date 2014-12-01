@@ -55,6 +55,26 @@ module.exports = function(app) {
 		});
 	});
 
+	// search a termo
+	app.post('/api/termos/busca/:caso/:termo', function(req, res) {
+		Termo.find({
+			if(caso == 0)
+				ptbr : req.params.termo
+			else
+				elis : req.params.termo
+		}, function(err, termo) {
+			if (err)
+				res.send(err);
+
+			// get and return all the termos after you create another
+			Termo.find(function(err, termos) {
+				if (err)
+					res.send(err)
+				res.json(termos);
+			});
+		});
+	});
+
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
 		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
