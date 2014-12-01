@@ -6,6 +6,7 @@ import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -40,8 +41,9 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
             HttpClient httpclient = new DefaultHttpClient();
 
-            HttpPost httpPost = new HttpPost(urls[0]);
-
+            //HttpPost httpPost = new HttpPost(urls[0]);
+            HttpGet httpPost = new HttpGet(urls[0]);
+/*
             String jsonEmString = "";
 
             JSONObject jsonObject = new JSONObject();
@@ -58,7 +60,7 @@ public class AsyncTaskPOST extends AsyncTask<String, Void, String> {
 
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
-
+*/
             HttpResponse httpResponse = httpclient.execute(httpPost);
 
             inputStream = httpResponse.getEntity().getContent();
