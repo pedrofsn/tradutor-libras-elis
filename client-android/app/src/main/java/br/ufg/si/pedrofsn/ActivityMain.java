@@ -40,6 +40,8 @@ import br.ufg.si.pedrofsn.teclado.interfaces.CallbackFragmentToActivity;
 import br.ufg.si.pedrofsn.teclado.interfaces.IElisKeyboard;
 import br.ufg.si.pedrofsn.teclado.models.Termo;
 import br.ufg.si.pedrofsn.teclado.models.Visografema;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class ActivityMain extends ActionBarActivity implements CallbackFragmentToActivity, IElisKeyboard {
 
@@ -48,6 +50,7 @@ public class ActivityMain extends ActionBarActivity implements CallbackFragmentT
     private TextView textViewElis;
     private List<Visografema> listaDeVisografemasPressionados = new ArrayList<Visografema>();
     private FragmentResultado fragmentResultado;
+    private int caso;
 
     /////////////////////// ACTIVITY
 
@@ -174,10 +177,26 @@ public class ActivityMain extends ActionBarActivity implements CallbackFragmentT
         }
     }
 
+    @Override
+    public void setErrorMessage(String mensagem) {
+        Crouton.makeText(this, mensagem, Style.ALERT).show();
+    }
+
     public void ocultarCardResultado() {
         // Permite traduzir outro termo sem ter que apertar o botão ok do card de resultado
         if (fragmentResultado != null) {
             Navegacao.detachFragment(fragmentResultado, getSupportFragmentManager());
         }
+    }
+
+    public void setTipoTraducao(int caso) {
+        // caso 0 = PTBR > ELiS
+        // caso 1 = ELiS > PTBR
+
+        this.caso = caso;
+    }
+
+    public int getCaso() {
+        return caso;
     }
 }

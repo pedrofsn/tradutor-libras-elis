@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.ufg.si.pedrofsn.ActivityMain;
+import br.ufg.si.pedrofsn.AsyncTaskGET;
 import br.ufg.si.pedrofsn.AsyncTaskPOST;
 import br.ufg.si.pedrofsn.Url;
 import br.ufg.si.pedrofsn.R;
@@ -109,6 +110,8 @@ public class FragmentTopoTradutor extends Fragment implements View.OnClickListen
             ((ActivityMain) getActivity()).getElisKeyboard().setVisibility(View.VISIBLE);
             Navegacao.replaceFragment(new FragmentElisKeyboard(), getActivity().getSupportFragmentManager(), FragmentElisKeyboard.TAG, R.id.frameLayoutKeyboardElis);
         }
+
+        ((ActivityMain) getActivity()).setTipoTraducao(tipoLingua.traduzirPara());
     }
 
     private void setValoresNosTextViewsDeTraducao() {
@@ -149,8 +152,11 @@ public class FragmentTopoTradutor extends Fragment implements View.OnClickListen
                     termo.setTipoLingua(tipoLingua);
                     termo.setTermo(getValorInseridoPeloUsuario());
 
-                    AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(getActivity(), termo);
-                    httpAsyncTask.execute(Url.URL + "busca");
+                    //AsyncTaskPOST httpAsyncTask = new AsyncTaskPOST(getActivity(), termo);
+                    //httpAsyncTask.execute(Url.URL);
+
+                    AsyncTaskGET asyncTaskGET = new AsyncTaskGET(getActivity(), termo);
+                    asyncTaskGET.execute(Url.URL);
                 }
 
                 break;

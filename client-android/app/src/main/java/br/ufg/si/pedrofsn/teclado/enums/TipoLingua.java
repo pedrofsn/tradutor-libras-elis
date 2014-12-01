@@ -33,4 +33,8 @@ public enum TipoLingua {
         }
     }
 
+    public int traduzirPara() {
+        return isElis() ? 1 : 0;
+    }
+
 }
