@@ -22,8 +22,8 @@ module.exports = function(app) {
 
 		// create a termo, information comes from AJAX request from Angular
 		Termo.create({
-			text : req.body.text,
-			done : false
+			ptbr : req.body.ptbr,
+			elis : req.body.elis
 		}, function(err, termo) {
 			if (err)
 				res.send(err);

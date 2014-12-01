@@ -1,5 +1,4 @@
 <!doctype html>
-
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="termo">
 <head>
@@ -39,7 +38,7 @@
 				<!-- LOOP OVER THE termos IN $scope.termos -->
 				<div class="checkbox" ng-repeat="termo in termos">
 					<label>
-						<input type="checkbox" ng-click="deleteTermo(termo._id)"> {{ termo.text }}
+						<input type="checkbox" ng-click="deleteTermo(termo._id)"> {{ termo.ptbr }} 
 					</label>
 				</div>
 
@@ -53,11 +52,12 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="Termo em português" ng-model="formData.ptbr">
+						<input type="text" class="form-control input-lg text-center" placeholder="Termo em ELiS" ng-model="formData.elis">
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW termos -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTermo()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTermo()">Adicionar termo ao banco de dados</button>
 				</form>
 			</div>
 		</div>
