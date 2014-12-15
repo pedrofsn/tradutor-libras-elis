@@ -59,9 +59,19 @@ public class FragmentResultado extends Fragment implements View.OnClickListener 
             if (resultado.getTipoLingua() == TipoLingua.PTBR) {
                 contentResultado = (String) resultado.getTermo();
             } else {
-                List<Visografema> listaVisografemasDigitados = resultado.getTermo() instanceof List ? (List<Visografema>) resultado.getTermo() : null;
-                for (Visografema v : listaVisografemasDigitados) {
-                    contentResultado = contentResultado.concat(v.getValorElis());
+                if (resultado.getTermo() != null) {
+                    List<Visografema> listaVisografemasDigitados = resultado.getTermo() instanceof List ? (List<Visografema>) resultado.getTermo() : null;
+                    if (listaVisografemasDigitados != null) {
+                        for (Visografema v : listaVisografemasDigitados) {
+                            if (v != null) {
+                                contentResultado = contentResultado.concat(v.getValorElis());
+                            }
+                        }
+                    }
+                }
+
+                if (resultado != null && resultado.getTermo() != null && resultado.getTermo() instanceof String) {
+                    contentResultado = (String) resultado.getTermo();
                 }
             }
         }
