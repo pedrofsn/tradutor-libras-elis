@@ -61,10 +61,15 @@
           <tr>
             <th>Ptbr</th>
             <th>Elis</th>
+            <th>Acões</th>
           </tr>
           <tr ng-repeat="termo in termos">
             <td>{{termo.ptbr}}</td>
             <td>{{termo.elis}}</td>
+            <td width="80px">
+							<!-- <button type="button" class="btn btn-info">Editar</button> -->
+							<button type="button" class="btn btn-danger" ng-click="deleteTermo(termo._id)">Remover</button>
+						</td>
           </tr>
         </table>
       </div>
