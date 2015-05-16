@@ -51,18 +51,26 @@
 		</div>
 
 		<!-- TERMO LIST -->
-		<div id="termo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+		<br />
+		<center><h1>Termos cadastrados</h1></center>
+		<br />
+		<div class="row-fluid">
+    <div class="span12">
+      <div class="span7">
+        <table class="table table-bordered table-striped table-hover">
+          <tr>
+            <th>Ptbr</th>
+            <th>Elis</th>
+          </tr>
+          <tr ng-repeat="termo in termos">
+            <td>{{termo.ptbr}}</td>
+            <td>{{termo.elis}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 
-				<!-- LOOP OVER THE termos IN $scope.termos -->
-				<div class="checkbox" ng-repeat="termo in termos">
-					<label>
-						<input type="checkbox" ng-click="deleteTermo(termo._id)"> {{ termo.ptbr }} - {{ termo.elis }} 
-					</label>
-				</div>
-
-			</div>
-		</div>
 
 		<div class="text-center text-muted">
 			<p>Desenvolvido por <a href="http://wwww.pedrofsn.com.br">pedrofsn</a>.</p>
