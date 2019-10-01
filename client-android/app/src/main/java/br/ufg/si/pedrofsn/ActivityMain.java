@@ -19,13 +19,14 @@ package br.ufg.si.pedrofsn;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ import br.ufg.si.pedrofsn.teclado.models.Visografema;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class ActivityMain extends ActionBarActivity implements CallbackFragmentToActivity, IElisKeyboard {
+public class ActivityMain extends AppCompatActivity implements CallbackFragmentToActivity, IElisKeyboard {
 
     private FrameLayout frameLayoutKeyboardElis;
     private FrameLayout frameLayoutTelaTradutor;
