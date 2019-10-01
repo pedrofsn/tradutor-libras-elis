@@ -1,13 +1,13 @@
 {
-  "name"         : "backend-elis-mobile",
-  "description"  : "Backend do App ELiS Mobile",
-  "main"         : "server.js",
-  "author"       : "Pedro Francisco de Sousa Neto",
-  "dependencies" : {
-    "express"    : "~4.7.2",
-    "mongoose"   : "~3.6.2",
-    "morgan"	 : "~1.2.2",
-	"body-parser": "~1.5.2",
-	"method-override": "~2.1.2"
+  "name": "backend-elis-mobile",
+  "description": "Backend do App ELiS Mobile",
+  "main": "server.js",
+  "author": "Pedro Francisco de Sousa Neto",
+  "dependencies": {
+    "express": "~4.17.1",
+    "mongoose": "~5.7.3",
+    "morgan": "~1.9.1",
+    "body-parser": "~1.19.0",
+    "method-override": "~3.0.0"
   }
 }
