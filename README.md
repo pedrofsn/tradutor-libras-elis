@@ -15,6 +15,11 @@ Orientador: Marcelo Ricardo Quinta
 Coorientadora: Mariângela Estelita Barros
 
 ## Versão
+- 1.3.0:
+```
+> Adicionado Versão em Inglês
+```
+
 - 1.2.0:
 ```
 > Refatoramento dos códigos usando ES6

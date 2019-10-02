@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="termo">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>ELiS Mobile - <%= translate.title %></title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            padding-top: 50px;
+        }
+
+        #termo-list {
+            margin-bottom: 30px;
+        }
+
+        #termo-form {
+            margin-bottom: 50px;
+        }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="/core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL termos WITH INITIALIZE FUNCTION -->
+
+<body ng-controller="mainController">
+    <div class="container">

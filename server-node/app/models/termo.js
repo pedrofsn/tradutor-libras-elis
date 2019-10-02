@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const TermSchema = {
-	ptbr: String,
+	item: String,
 	elis: String
 }
 

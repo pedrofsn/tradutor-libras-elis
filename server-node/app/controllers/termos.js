@@ -10,8 +10,8 @@ const findTerm = async (req, res) => {
 }
 
 const createTerm = async (req, res) => {
-    const { ptbr, elis } = req.body
-    const newItem = { ptbr: ptbr.toLowerCase(), elis }
+    const { item, elis } = req.body
+    const newItem = { item: item.toLowerCase(), elis }
     try {
         await Termo.create(newItem)
         const termos = await Termo.find({})
@@ -32,12 +32,12 @@ const deleteTerm = async (req, res) => {
 }
 
 const searchTerm = async (req, res) => {
-    // 0 - ELiS | 1 - PTBR
+    // 0 - ELiS | 1 - PTBR/EN
     const { caso, termo } = req.params.caso
 
     try {
         const findItem = (caso == 1)
-            ? { ptbr: termo.toLowerCase() }
+            ? { item: termo.toLowerCase() }
             : { elis: termo }
 
         const termos = await Termo.find(findItem)

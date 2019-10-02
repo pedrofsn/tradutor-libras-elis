@@ -8,6 +8,5 @@ router
     .post('/', TermoController.createTerm)
     .delete('/:termo_id', TermoController.deleteTerm)
     .get('/busca/:caso/:termo', TermoController.searchTerm)
-    .get('*', (req, res) => res.sendfile('./public/index.html'))
 
 module.exports = router
