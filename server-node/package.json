@@ -1,13 +1,19 @@
 {
   "name": "backend-elis-mobile",
+  "version": "1.2.0",
   "description": "Backend do App ELiS Mobile",
   "main": "server.js",
+  "scripts": {
+    "start": "node index.js",
+    "devel": "nodemon index.js"
+  },
   "author": "Pedro Francisco de Sousa Neto",
   "dependencies": {
-    "express": "~4.17.1",
-    "mongoose": "~5.7.3",
-    "morgan": "~1.9.1",
     "body-parser": "~1.19.0",
-    "method-override": "~3.0.0"
+    "dotenv": "^8.1.0",
+    "express": "~4.17.1",
+    "method-override": "~3.0.0",
+    "mongoose": "~5.7.3",
+    "morgan": "~1.9.1"
   }
 }

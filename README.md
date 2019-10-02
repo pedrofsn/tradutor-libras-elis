@@ -13,3 +13,31 @@ Aluno: Pedro Francisco de Sousa Neto
 Orientador: Marcelo Ricardo Quinta
 
 Coorientadora: Mariângela Estelita Barros
+
+## Versão
+- 1.2.0:
+```
+> Refatoramento dos códigos usando ES6
+> Inclusão de Async/Await
+> Separação das camadas (Routes/Models/Controllers)
+> Adicionado .env para configurações sensíveis
+> Separação do App/Mongo, para uso de Testes
+```
+
+## Modo de Usar:
+```
+0.
+> Para uso de outro servidor Mongodb, renomeie .env-default para .env e faça as modificações necessárias.
+
+1. 
+yarn install OU
+npm install
+
+2. 
+yarn start OU 
+npm start OU 
+node index.js
+```
+
+## Contribuidores
+- [Renato Siqueira](https://github.com/RenatoSiqueira)
