@@ -1,6 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-module.exports = mongoose.model('Termo', {
-	ptbr : String,
-	elis : String
-});
+const TermSchema = {
+	ptbr: String,
+	elis: String
+}
+
+const Termo = mongoose.model('Termo', TermSchema)
+
+module.exports = Termo
