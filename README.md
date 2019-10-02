@@ -1,5 +1,6 @@
 ## tradutor-libras-elis
-Trabalho de Conclusão de Curso em Sistemas de Informação pela Universidade Federal de Goiás - UFG.
+Trabalho de Conclusão de Curso (TCC) em Sistemas de Informação, concluído em 2014, pela Universidade Federal de Goiás - UFG.
+Mesmo após apresentação, entrega e término do curso, continuo evoluindo o projeto com a ajuda da comunidade.
 
 ## ELiS Mobile
 O ELiS Mobile é um aplicativo Android para dispositivos móveis. Ele contém a funcionalidade de tradução de palavras e tem como entrada termos em português ou em ELiS. Para que o aplicativo seja executado, é necessário que o dispositivo esteja com o sistema operacional Android na versão 2.3.3 ou superior e de acesso à internet, para que as consultas à base de dados possam ser realizadas através de um servidor na nuvem.
