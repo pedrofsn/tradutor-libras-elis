@@ -41,4 +41,8 @@ node index.js
 ```
 
 ## Contribuidores
-- [Renato Siqueira](https://github.com/RenatoSiqueira)
+
+- [Ekunola Ezekiel](https://github.com/Easybuoy) | Nigéria
+- [joaortk](https://github.com/joaortk) | Brasil
+- [Pedro Francisco de Sousa Neto](https://github.com/pedrofsn)  | Brasil
+- [Renato Siqueira](https://github.com/RenatoSiqueira)  | Brasil
