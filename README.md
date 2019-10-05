@@ -1,21 +1,16 @@
 ## tradutor-libras-elis
-Trabalho de Conclusão de Curso (TCC) em Sistemas de Informação, concluído em 2014, pela Universidade Federal de Goiás - UFG.
-Mesmo após apresentação, entrega e término do curso, continuo evoluindo o projeto com a ajuda da comunidade.
+O que é este projeto? Veja [aqui](https://github.com/pedrofsn/tradutor-libras-elis/wiki/ELiS-Mobile).
 
 ## ELiS Mobile
-O ELiS Mobile é um aplicativo Android para dispositivos móveis. Ele contém a funcionalidade de tradução de palavras e tem como entrada termos em português ou em ELiS. Para que o aplicativo seja executado, é necessário que o dispositivo esteja com o sistema operacional Android na versão 2.3.3 ou superior e de acesso à internet, para que as consultas à base de dados possam ser realizadas através de um servidor na nuvem.
+O que é o ELiS Mobile? Veja [aqui](https://github.com/pedrofsn/tradutor-libras-elis/wiki/ELiS-Mobile)
 
 ## Publicação
-[Link](https://drive.google.com/file/d/0B_OCeC6ob9ZNam9FQUJ1dUF3M0k/view?usp=sharing) do PDF do artigo publicado nos Anais da V Escola Regional de Informática de Mato Grosso - Barra do Garças/MT
+Há um artigo acadêmico publicado sobre este trabalho? Sim, veja [aqui](https://github.com/pedrofsn/tradutor-libras-elis/wiki/Publica%C3%A7%C3%A3o)
 
 ## Pessoas envolvidas no trabalho
-Aluno: Pedro Francisco de Sousa Neto
+Quem são os autores do projeto? Veja [aqui](https://github.com/pedrofsn/tradutor-libras-elis/wiki/Autores-do-TCC).
 
-Orientador: Marcelo Ricardo Quinta
-
-Coorientadora: Mariângela Estelita Barros
-
-## Versão
+## Versões
 - 1.3.0:
 ```
 > Adicionado Versão em Inglês
@@ -30,7 +25,7 @@ Coorientadora: Mariângela Estelita Barros
 > Separação do App/Mongo, para uso de Testes
 ```
 
-## Modo de Usar:
+## Como executar o servidor
 ```
 0.
 > Para uso de outro servidor Mongodb, renomeie .env-default para .env e faça as modificações necessárias.
