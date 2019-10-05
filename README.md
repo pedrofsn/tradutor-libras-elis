@@ -26,15 +26,16 @@ Quem são os autores do projeto? Veja [aqui](https://github.com/pedrofsn/traduto
 ```
 
 ## Como executar o servidor
-```
-0.
 > Para uso de outro servidor Mongodb, renomeie .env-default para .env e faça as modificações necessárias.
 
-1. 
+```
+# 1. Instalação de dependências do projeto
+
 yarn install OU
 npm install
 
-2. 
+# 2.  Execução do projeto
+
 yarn start OU 
 npm start OU 
 node index.js
