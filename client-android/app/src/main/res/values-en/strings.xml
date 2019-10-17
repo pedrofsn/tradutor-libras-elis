@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SETTINGS -->
+    <string name="app_name">ELiS Mobile</string>
+    <string name="sobre">About</string>
+
+    <!-- DIALOG -->
+    <string name="dialog_sobre"><![CDATA[This app is being developed by Pedro Francisco de Sousa Neto, majoring in Information Systems from the Federal University of Goiás (UFG).<br /> <br /> <br /> <li>-Prof. Ms. Marcelo Ricardo Quinta (Advisor)</li> <br /> <li>-Profa. Dr. Mariângela Estelita Barros (Coordinator)</li>]]></string>
+
+    <!-- VISOGRAPHY GROUPS -->
+    <string name="configuracao_de_dedo">FINGER SETUP</string>
+    <string name="orientacao_de_palma">PALM ORIENTATION</string>
+    <string name="pontos_de_articulacao">JOINT POINTS</string>
+    <string name="movimentos">MOVEMENTS</string>
+    <string name="PONTUACAO">SCORE</string>
+    <string name="NUMEROS">Numbers</string>
+
+    <!-- ALERT MESSAGES -->
+    <string name="erro_conexao">You must be connected to the internet!</string>
+    <string name="ops_erro">There was a problem!</string>
+
+</resources>
